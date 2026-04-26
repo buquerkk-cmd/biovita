@@ -1,105 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BioVita</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioVita</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0f172a;
-      color: #ffffff;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #020617;
+  color: #fff;
+}
 
-    header {
-      background: #020617;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #1e293b;
-    }
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #020617;
+  border-bottom: 1px solid #1e293b;
+}
 
-    h1 {
-      margin: 0;
-      color: #22c55e;
-    }
+.logo {
+  color: #22c55e;
+  font-weight: bold;
+  font-size: 20px;
+}
 
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-    }
+nav a {
+  color: #ccc;
+  margin-left: 20px;
+  text-decoration: none;
+}
 
-    .hero h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(180deg, #020617, #0f172a);
+}
 
-    .hero p {
-      color: #94a3b8;
-      max-width: 600px;
-      margin: auto;
-    }
+.hero h1 {
+  font-size: 40px;
+}
 
-    .btn {
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #22c55e;
-      color: #000;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.hero p {
+  color: #94a3b8;
+  max-width: 600px;
+  margin: auto;
+}
 
-    .section {
-      padding: 60px 20px;
-      text-align: center;
-    }
+.btn {
+  margin-top: 20px;
+  padding: 14px 25px;
+  background: #22c55e;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .card {
-      background: #020617;
-      padding: 20px;
-      margin: 10px;
-      display: inline-block;
-      width: 250px;
-      border: 1px solid #1e293b;
-    }
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
 
-  </style>
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #020617;
+  border: 1px solid #1e293b;
+  margin: 10px;
+  padding: 25px;
+  width: 260px;
+}
+
+.footer {
+  padding: 30px;
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  color: #94a3b8;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>BioVita</h1>
-  <p>Indústria Farmacêutica e Dermocosmética</p>
+  <div class="logo">BioVita</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Produtos</a>
+    <a href="#">Sobre</a>
+    <a href="#">Contato</a>
+  </nav>
 </header>
 
 <section class="hero">
-  <h2>Ciência aplicada à saúde da pele</h2>
-  <p>Desenvolvemos dermocosméticos avançados com base científica, segurança regulatória e inovação.</p>
+  <h1>Ciência aplicada à saúde da pele</h1>
+  <p>Desenvolvemos dermocosméticos com base científica, segurança regulatória e inovação tecnológica.</p>
   <button class="btn">Conhecer Produtos</button>
 </section>
 
 <section class="section">
   <h2>Linhas de Produtos</h2>
 
-  <div class="card">
-    <h3>Anexregen</h3>
-    <p>Sérum reparador com ácido tranexâmico.</p>
-  </div>
+  <div class="cards">
+    <div class="card">
+      <h3>Anexregen</h3>
+      <p>Clareamento e reparação com ácido tranexâmico.</p>
+    </div>
 
-  <div class="card">
-    <h3>Seboclin</h3>
-    <p>Controle avançado da oleosidade.</p>
-  </div>
+    <div class="card">
+      <h3>Seboclin</h3>
+      <p>Controle inteligente da oleosidade.</p>
+    </div>
 
-  <div class="card">
-    <h3>Acnexyl</h3>
-    <p>Tratamento intensivo para acne.</p>
+    <div class="card">
+      <h3>Acnexyl</h3>
+      <p>Tratamento intensivo antiacne.</p>
+    </div>
   </div>
-
 </section>
+
+<section class="section">
+  <h2>Sobre a BioVita</h2>
+  <p style="max-width:600px; margin:auto; color:#94a3b8;">
+    A BioVita é uma indústria farmacêutica focada no desenvolvimento de soluções dermocosméticas avançadas, alinhadas às normas regulatórias e à ciência moderna.
+  </p>
+</section>
+
+<div class="footer">
+  © 2026 BioVita - Todos os direitos reservados
+</div>
 
 </body>
 </html>
