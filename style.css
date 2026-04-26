@@ -9,6 +9,7 @@ body {
   color: #1f2937;
 }
 
+/* TOPO */
 .topbar {
   background: #006b4f;
   color: white;
@@ -16,12 +17,12 @@ body {
   display: flex;
   align-items: center;
   gap: 25px;
+  flex-wrap: wrap;
 }
 
 .logo {
   font-size: 26px;
   font-weight: bold;
-  white-space: nowrap;
 }
 
 .logo span {
@@ -61,12 +62,14 @@ body {
   border-radius: 50%;
 }
 
+/* MENU */
 .menu {
   background: white;
   padding: 14px 6%;
   display: flex;
   gap: 25px;
   border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
 }
 
 .menu a {
@@ -75,6 +78,7 @@ body {
   font-weight: bold;
 }
 
+/* HERO */
 .hero {
   min-height: 360px;
   background: linear-gradient(90deg, #006b4f, #00a86b);
@@ -104,6 +108,7 @@ body {
   cursor: pointer;
 }
 
+/* BENEFÍCIOS */
 .benefits {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -120,6 +125,7 @@ body {
   font-weight: bold;
 }
 
+/* SEÇÕES */
 .categories,
 .products,
 .institutional {
@@ -131,6 +137,7 @@ h2 {
   margin-bottom: 25px;
 }
 
+/* CATEGORIAS */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -146,6 +153,7 @@ h2 {
   box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
+/* PRODUTOS */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -202,6 +210,7 @@ h2 {
   cursor: pointer;
 }
 
+/* INSTITUCIONAL */
 .institutional {
   background: white;
   text-align: center;
@@ -213,6 +222,7 @@ h2 {
   color: #4b5563;
 }
 
+/* RODAPÉ */
 footer {
   background: #003d31;
   color: white;
@@ -222,6 +232,7 @@ footer {
   padding: 40px 6%;
 }
 
+/* RESPONSIVO */
 @media (max-width: 900px) {
   .topbar {
     flex-direction: column;
