@@ -1,140 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BioVita</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #020617;
-  color: #fff;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: #020617;
-  border-bottom: 1px solid #1e293b;
-}
-
-.logo {
-  color: #22c55e;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-nav a {
-  color: #ccc;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-.hero {
-  text-align: center;
-  padding: 120px 20px;
-  background: linear-gradient(180deg, #020617, #0f172a);
-}
-
-.hero h1 {
-  font-size: 40px;
-}
-
-.hero p {
-  color: #94a3b8;
-  max-width: 600px;
-  margin: auto;
-}
-
-.btn {
-  margin-top: 20px;
-  padding: 14px 25px;
-  background: #22c55e;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.section {
-  padding: 80px 20px;
-  text-align: center;
-}
-
-.cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.card {
-  background: #020617;
-  border: 1px solid #1e293b;
-  margin: 10px;
-  padding: 25px;
-  width: 260px;
-}
-
-.footer {
-  padding: 30px;
-  text-align: center;
-  border-top: 1px solid #1e293b;
-  color: #94a3b8;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioVita Farma</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<header>
-  <div class="logo">BioVita</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Produtos</a>
-    <a href="#">Sobre</a>
-    <a href="#">Contato</a>
-  </nav>
+<header class="topbar">
+  <div class="logo">BioVita <span>Farma</span></div>
+
+  <div class="search">
+    <input type="text" id="searchInput" placeholder="Busque por medicamento, dermocosmético ou marca..." />
+    <button onclick="searchProducts()">Buscar</button>
+  </div>
+
+  <div class="cart">
+    🛒 Carrinho <span id="cartCount">0</span>
+  </div>
 </header>
 
+<nav class="menu">
+  <a href="#">Medicamentos</a>
+  <a href="#">Dermocosméticos</a>
+  <a href="#">Vitaminas</a>
+  <a href="#">Higiene</a>
+  <a href="#">Ofertas</a>
+  <a href="#">Marcas</a>
+</nav>
+
 <section class="hero">
-  <h1>Ciência aplicada à saúde da pele</h1>
-  <p>Desenvolvemos dermocosméticos com base científica, segurança regulatória e inovação tecnológica.</p>
-  <button class="btn">Conhecer Produtos</button>
-</section>
-
-<section class="section">
-  <h2>Linhas de Produtos</h2>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Anexregen</h3>
-      <p>Clareamento e reparação com ácido tranexâmico.</p>
-    </div>
-
-    <div class="card">
-      <h3>Seboclin</h3>
-      <p>Controle inteligente da oleosidade.</p>
-    </div>
-
-    <div class="card">
-      <h3>Acnexyl</h3>
-      <p>Tratamento intensivo antiacne.</p>
-    </div>
+  <div>
+    <h1>Saúde, cuidado e bem-estar em um só lugar</h1>
+    <p>Produtos farmacêuticos, dermocosméticos e cuidados pessoais com segurança e qualidade BioVita.</p>
+    <button>Ver ofertas</button>
   </div>
 </section>
 
-<section class="section">
-  <h2>Sobre a BioVita</h2>
-  <p style="max-width:600px; margin:auto; color:#94a3b8;">
-    A BioVita é uma indústria farmacêutica focada no desenvolvimento de soluções dermocosméticas avançadas, alinhadas às normas regulatórias e à ciência moderna.
+<section class="benefits">
+  <div>🚚 Entrega rápida</div>
+  <div>💳 Pagamento seguro</div>
+  <div>🏥 Produtos de confiança</div>
+  <div>📦 Retire na loja</div>
+</section>
+
+<section class="categories">
+  <h2>Categorias</h2>
+
+  <div class="category-grid">
+    <div class="category">Medicamentos</div>
+    <div class="category">Dermocosméticos</div>
+    <div class="category">Vitaminas</div>
+    <div class="category">Cuidados com a pele</div>
+    <div class="category">Higiene pessoal</div>
+    <div class="category">Mamãe e bebê</div>
+  </div>
+</section>
+
+<section class="products">
+  <h2>Produtos em destaque</h2>
+
+  <div class="product-grid" id="productGrid">
+
+    <div class="product-card" data-name="Anexregen Sérum Dermatológico">
+      <span class="tag">Dermocosmético</span>
+      <div class="product-img">🧴</div>
+      <h3>Anexregen Sérum</h3>
+      <p>Ácido tranexâmico 3% - 30 mL</p>
+      <strong>R$ 89,90</strong>
+      <button onclick="addToCart()">Adicionar ao carrinho</button>
+    </div>
+
+    <div class="product-card" data-name="Seboclin Gel Controle de Oleosidade">
+      <span class="tag">Pele oleosa</span>
+      <div class="product-img">🧴</div>
+      <h3>Seboclin Gel</h3>
+      <p>Controle da oleosidade - 40 g</p>
+      <strong>R$ 74,90</strong>
+      <button onclick="addToCart()">Adicionar ao carrinho</button>
+    </div>
+
+    <div class="product-card" data-name="Acnexyl Tratamento Antiacne">
+      <span class="tag">Antiacne</span>
+      <div class="product-img">🧴</div>
+      <h3>Acnexyl</h3>
+      <p>Tratamento intensivo antiacne - 30 g</p>
+      <strong>R$ 69,90</strong>
+      <button onclick="addToCart()">Adicionar ao carrinho</button>
+    </div>
+
+    <div class="product-card" data-name="Vitamina C BioVita">
+      <span class="tag">Vitaminas</span>
+      <div class="product-img">💊</div>
+      <h3>Vitamina C BioVita</h3>
+      <p>Suplemento alimentar - 60 cápsulas</p>
+      <strong>R$ 49,90</strong>
+      <button onclick="addToCart()">Adicionar ao carrinho</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="institutional">
+  <h2>BioVita Farma</h2>
+  <p>
+    Uma plataforma de saúde e dermocosméticos criada para unir ciência, segurança,
+    tecnologia e cuidado diário.
   </p>
 </section>
 
-<div class="footer">
-  © 2026 BioVita - Todos os direitos reservados
-</div>
+<footer>
+  <div>
+    <h3>BioVita Farma</h3>
+    <p>Saúde, beleza e cuidado com responsabilidade.</p>
+  </div>
 
+  <div>
+    <h4>Atendimento</h4>
+    <p>Segunda a sábado, 8h às 20h</p>
+    <p>contato@biovitafarma.com.br</p>
+  </div>
+
+  <div>
+    <h4>Institucional</h4>
+    <p>Sobre nós</p>
+    <p>Política de privacidade</p>
+    <p>Trocas e devoluções</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
