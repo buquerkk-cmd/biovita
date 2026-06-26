@@ -1,22 +1,22 @@
-# BioVita Dermo — Site premium
+[README.md](https://github.com/user-attachments/files/29388114/README.md)
+# BioVita Dermo — Site final
 
-Site estático em HTML, CSS e JavaScript puro para apresentação escolar da BioVita Dermo.
-
-## Arquivos
-
-- `index.html` — estrutura do site
-- `style.css` — visual premium/editorial
-- `script.js` — menu, pesquisa, diagnóstico, plano e ficha
-- `assets/` — imagens SVG originais do protótipo
+Site estático em HTML, CSS e JavaScript puro.
 
 ## Como publicar no GitHub Pages
 
-1. Envie todos os arquivos para a raiz do repositório.
-2. Vá em `Settings > Pages`.
-3. Em `Source`, escolha `Deploy from a branch`.
-4. Selecione `main` e `/root`.
-5. Clique em `Save`.
+1. Extraia o ZIP.
+2. Envie `index.html`, `README.md` e a pasta `assets/` para a raiz do repositório.
+3. No GitHub: Settings > Pages > Deploy from a branch > main > /root.
 
-## Observação
+## Arquivos de imagem
 
-As imagens e o layout são originais para o projeto BioVita, com estética editorial e minimalista inspirada em marcas premium.
+- `assets/hero-stand.jpg`
+- `assets/logo-biovita.jpg`
+- `assets/seboclin.jpg`
+- `assets/keraclin.jpg`
+- `assets/acnexyl.jpg`
+- `assets/anexregen.jpg`
+- `assets/poster-sobre.jpg`
+- `assets/poster-sustentabilidade.jpg`
+- `assets/tabela-precos.jpg`
