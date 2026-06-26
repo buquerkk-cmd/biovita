@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="820" viewBox="0 0 620 820" role="img" aria-label="Anexregen">
+  <rect width="620" height="820" fill="#111111"/>
+  <ellipse cx="310" cy="714" rx="116" ry="20" fill="#000" opacity="0.5"/>
+  <rect x="268" y="95" width="84" height="70" rx="10" fill="#f7f7f7"/>
+  <rect x="286" y="60" width="48" height="54" rx="9" fill="#e5e5e5" stroke="#ffffff" stroke-width="3"/>
+  <path d="M306 100 C294 138 284 165 266 190" stroke="#ffffff" stroke-width="5" fill="none"/>
+  <rect x="205" y="170" width="210" height="535" rx="40" fill="#f9f9f7" stroke="#ffffff" stroke-width="4"/>
+  <rect x="232" y="250" width="156" height="300" rx="4" fill="#ffffff" stroke="#111" stroke-width="2"/>
+  <text x="310" y="310" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" letter-spacing="-5" fill="#111">BIOVITA</text>
+  <text x="310" y="344" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="6" fill="#111">DERMO</text>
+  <line x1="257" y1="382" x2="363" y2="382" stroke="#111" stroke-width="2"/>
+  <text x="310" y="425" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#111">ANEXREGEN</text>
+  <text x="310" y="458" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="2" fill="#555">SÉRUM REPARADOR</text>
+  <text x="310" y="494" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#555">ÁCIDO TRANEXÂMICO 3%</text>
+  <rect x="258" y="580" width="104" height="1" fill="#111"/>
+  <text x="310" y="615" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="2" fill="#111">REPAIR</text>
+</svg>
