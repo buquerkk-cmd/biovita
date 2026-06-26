@@ -1,22 +1,21 @@
-[README.md](https://github.com/user-attachments/files/29388114/README.md)
-# BioVita Dermo — Site final
+[README.md](https://github.com/user-attachments/files/29388708/README.md)
+# BioVita Dermo — site final corrigido
 
-Site estático em HTML, CSS e JavaScript puro.
+Site estático para GitHub Pages.
 
-## Como publicar no GitHub Pages
+## Arquivos necessários
 
-1. Extraia o ZIP.
-2. Envie `index.html`, `README.md` e a pasta `assets/` para a raiz do repositório.
-3. No GitHub: Settings > Pages > Deploy from a branch > main > /root.
+- `index.html`
+- `assets/`
+- `README.md` opcional
 
-## Arquivos de imagem
+## Publicação no GitHub Pages
 
-- `assets/hero-stand.jpg`
-- `assets/logo-biovita.jpg`
-- `assets/seboclin.jpg`
-- `assets/keraclin.jpg`
-- `assets/acnexyl.jpg`
-- `assets/anexregen.jpg`
-- `assets/poster-sobre.jpg`
-- `assets/poster-sustentabilidade.jpg`
-- `assets/tabela-precos.jpg`
+1. Envie o `index.html` e a pasta `assets` para a raiz do repositório.
+2. Vá em `Settings > Pages`.
+3. Use `Deploy from a branch`, branch `main`, pasta `/root`.
+4. Aguarde o link público atualizar.
+
+## Observação
+
+O site é um protótipo educacional e não substitui orientação dermatológica.
