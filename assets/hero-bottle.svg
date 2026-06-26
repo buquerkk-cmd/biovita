@@ -1,0 +1,17 @@
+<svg width="720" height="980" viewBox="0 0 720 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="980" fill="none"/>
+  <ellipse cx="360" cy="895" rx="170" ry="34" fill="#000" opacity="0.12"/>
+  <path d="M288 112H432V226H288V112Z" fill="#ECE8DD" stroke="#111" stroke-width="2"/>
+  <path d="M310 52H410V113H310V52Z" fill="#111"/>
+  <path d="M266 218H454C475.539 218 493 235.461 493 257V842C493 874.033 467.033 900 435 900H285C252.967 900 227 874.033 227 842V257C227 235.461 244.461 218 266 218Z" fill="#FBFAF5" stroke="#111" stroke-width="2"/>
+  <path d="M247 259H473V518H247V259Z" fill="#E8E4DA"/>
+  <path d="M274 290H446V491H274V290Z" fill="#FBFAF5" stroke="#111" stroke-width="1"/>
+  <text x="360" y="358" text-anchor="middle" font-family="Georgia, serif" font-size="62" letter-spacing="-5" fill="#111">BIOVITA</text>
+  <text x="360" y="393" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" letter-spacing="10" fill="#111">DERMO</text>
+  <line x1="305" y1="426" x2="415" y2="426" stroke="#111" stroke-width="1"/>
+  <text x="360" y="462" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" letter-spacing="4" fill="#555">NOVA ROTINA</text>
+  <path d="M247 610C317 562 401 562 473 610V842C473 862.987 455.987 880 435 880H285C264.013 880 247 862.987 247 842V610Z" fill="#BAC8BC" opacity="0.55"/>
+  <path d="M267 688H453" stroke="#111" stroke-width="1" opacity=".35"/>
+  <path d="M267 728H453" stroke="#111" stroke-width="1" opacity=".35"/>
+  <path d="M267 768H453" stroke="#111" stroke-width="1" opacity=".35"/>
+</svg>

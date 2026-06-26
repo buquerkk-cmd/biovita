@@ -1,0 +1,15 @@
+<svg width="520" height="760" viewBox="0 0 520 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="760" fill="#FBFAF5"/>
+  <ellipse cx="260" cy="708" rx="126" ry="20" fill="#000" opacity=".10"/>
+  <path d="M157 200H363C383.435 200 400 216.565 400 237V645C400 677.033 374.033 703 342 703H178C145.967 703 120 677.033 120 645V237C120 216.565 136.565 200 157 200Z" fill="#F7F6F0" stroke="#111" stroke-width="2"/>
+  <path d="M188 91H332L363 201H157L188 91Z" fill="#111"/>
+  <rect x="153" y="276" width="214" height="310" fill="#E9E5DB" stroke="#111"/>
+  <text x="260" y="376" text-anchor="middle" font-family="Georgia, serif" font-size="48" letter-spacing="-3" fill="#111">KERACLIN</text>
+  <text x="260" y="416" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" letter-spacing="5" fill="#111">ESFOLIANTE</text>
+  <line x1="207" y1="452" x2="313" y2="452" stroke="#111"/>
+  <text x="260" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" letter-spacing="3" fill="#444">RENOVAÇÃO</text>
+  <circle cx="204" cy="542" r="5" fill="#111" opacity=".5"/>
+  <circle cx="238" cy="526" r="3" fill="#111" opacity=".4"/>
+  <circle cx="286" cy="544" r="4" fill="#111" opacity=".35"/>
+  <circle cx="315" cy="524" r="3" fill="#111" opacity=".4"/>
+</svg>

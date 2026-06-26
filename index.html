@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BioVita Dermo — dermocosméticos com estética premium, diagnóstico rápido de pele e planos de rotina." />
+  <title>BioVita Dermo | Nova Rotina</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar" aria-label="Cabeçalho principal">
+    <button class="menu-trigger" id="menuTrigger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+
+    <a class="brand" href="#inicio" aria-label="BioVita Dermo - início">
+      <span class="brand-main">BIOVITA</span>
+      <span class="brand-sub">DERMO</span>
+    </a>
+
+    <nav class="utility" aria-label="Links rápidos">
+      <button class="utility-link" id="searchTrigger">PESQUISA</button>
+      <a href="#diagnostico" class="utility-link">DIAGNÓSTICO</a>
+      <button class="utility-link plan-counter" id="planTrigger">MEU PLANO <span id="planCount">0</span></button>
+    </nav>
+  </header>
+
+  <aside class="side-actions" aria-label="Atalhos laterais">
+    <a href="#produtos">PRODUTOS</a>
+    <a href="#planos">ASSINATURAS</a>
+    <a href="#contato">ATENDIMENTO</a>
+  </aside>
+
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <div class="menu-panel">
+      <button class="close-menu" id="closeMenu" aria-label="Fechar menu"></button>
+      <div class="menu-logo">BIOVITA</div>
+      <div class="menu-grid">
+        <nav class="menu-primary" aria-label="Menu principal">
+          <a href="#inicio">• INÍCIO</a>
+          <a href="#rotina">NOVA ROTINA</a>
+          <a href="#produtos">PRODUTOS</a>
+          <a href="#diagnostico">DIAGNÓSTICO</a>
+          <a href="#planos">ASSINATURAS</a>
+          <a href="#sobre">SOBRE</a>
+          <a href="#contato">CONTATO</a>
+        </nav>
+        <div class="menu-collections">
+          <div>
+            <span>01 | LIMPEZA</span>
+            <strong>SEBOCLIN</strong>
+          </div>
+          <div>
+            <span>02 | REPARAÇÃO</span>
+            <strong>ANEXREGEN</strong>
+          </div>
+          <div>
+            <span>03 | RENOVAÇÃO</span>
+            <strong>KERACLIN</strong>
+          </div>
+        </div>
+        <figure class="menu-image">
+          <img src="assets/editorial-01.svg" alt="Imagem editorial minimalista de skincare" />
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="inicio" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <p class="eyebrow">BIOVITA DERMO</p>
+        <h1 id="heroTitle">Nova<br>Rotina</h1>
+        <p class="hero-copy">Dermocosméticos de aparência premium para limpeza, reparação e renovação cutânea.</p>
+        <div class="hero-actions">
+          <a href="#produtos">VER PRODUTOS</a>
+          <a href="#diagnostico">FAZER DIAGNÓSTICO</a>
+        </div>
+      </div>
+
+      <div class="hero-center" aria-hidden="true">
+        <span>THE DERMO</span>
+        <span>ROUTINE</span>
+      </div>
+
+      <div class="hero-right">
+        <figure class="hero-product product-float">
+          <img src="assets/hero-bottle.svg" alt="Produto BioVita Dermo em frasco premium" />
+        </figure>
+        <div class="hero-note">
+          <span>01</span>
+          <p>Rotina inteligente para pele oleosa, acneica, manchada ou sensibilizada.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial" id="rotina" aria-labelledby="rotinaTitle">
+      <header class="section-title centered">
+        <span>01 | LANÇAMENTO</span>
+        <h2 id="rotinaTitle">The Dermo Routine</h2>
+      </header>
+
+      <div class="editorial-grid">
+        <figure class="editorial-card large">
+          <img src="assets/editorial-02.svg" alt="Composição editorial com textura de pele e luz suave" />
+          <figcaption>VER <span>1</span></figcaption>
+        </figure>
+        <figure class="editorial-card large right-card">
+          <img src="assets/editorial-03.svg" alt="Produto BioVita em composição premium" />
+          <figcaption>VER <span>2</span></figcaption>
+        </figure>
+        <div class="watermark">BIOVITA</div>
+      </div>
+    </section>
+
+    <section class="catalog" id="produtos" aria-labelledby="produtosTitle">
+      <header class="section-title split">
+        <div>
+          <span>02 | COLEÇÃO</span>
+          <h2 id="produtosTitle">Produtos</h2>
+        </div>
+        <p>Ativos selecionados. Linguagem simples. Aparência de marca real.</p>
+      </header>
+
+      <div class="product-list">
+        <article class="product-card" data-product="Seboclin">
+          <div class="product-index">01</div>
+          <figure><img src="assets/seboclin.svg" alt="Seboclin Gel de Limpeza Dermatológico" /></figure>
+          <div class="product-info">
+            <span>LIMPEZA | ÁCIDO SALICÍLICO 2%</span>
+            <h3>Seboclin</h3>
+            <p>Gel de limpeza para pele oleosa e acneica. Ajuda a controlar sebo, poros e acúmulo de impurezas.</p>
+            <button class="add-plan">ADICIONAR AO PLANO</button>
+          </div>
+        </article>
+
+        <article class="product-card reversed" data-product="Anexregen">
+          <div class="product-index">02</div>
+          <figure><img src="assets/anexregen.svg" alt="Anexregen Sérum Dermatológico Reparador" /></figure>
+          <div class="product-info">
+            <span>REPARAÇÃO | ÁCIDO TRANEXÂMICO 3%</span>
+            <h3>Anexregen</h3>
+            <p>Sérum para uniformização do tom, manchas pós-acne e suporte à barreira cutânea.</p>
+            <button class="add-plan">ADICIONAR AO PLANO</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-product="Keraclin">
+          <div class="product-index">03</div>
+          <figure><img src="assets/keraclin.svg" alt="Keraclin Esfoliante Dermatológico Renovador" /></figure>
+          <div class="product-info">
+            <span>RENOVAÇÃO | TEXTURA CUTÂNEA</span>
+            <h3>Keraclin</h3>
+            <p>Esfoliante para renovar a textura da pele e construir acabamento mais uniforme e luminoso.</p>
+            <button class="add-plan">ADICIONAR AO PLANO</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="diagnosis" id="diagnostico" aria-labelledby="diagnosticoTitle">
+      <div class="diagnosis-text">
+        <span>03 | DIAGNÓSTICO</span>
+        <h2 id="diagnosticoTitle">Descubra sua rotina BioVita</h2>
+        <p>Responda três perguntas. O site monta uma recomendação rápida para o atendimento no estande.</p>
+      </div>
+
+      <form class="diagnosis-form" id="diagnosisForm">
+        <fieldset>
+          <legend>01 | Sua pele costuma ser:</legend>
+          <label><input type="radio" name="skin" value="oleosa" required> Oleosa</label>
+          <label><input type="radio" name="skin" value="mista"> Mista</label>
+          <label><input type="radio" name="skin" value="seca"> Seca</label>
+          <label><input type="radio" name="skin" value="sensivel"> Sensível</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>02 | Principal incômodo:</legend>
+          <label><input type="radio" name="concern" value="acne" required> Acne</label>
+          <label><input type="radio" name="concern" value="manchas"> Manchas</label>
+          <label><input type="radio" name="concern" value="oleosidade"> Oleosidade</label>
+          <label><input type="radio" name="concern" value="textura"> Textura</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>03 | Você já usa skincare?</legend>
+          <label><input type="radio" name="routine" value="sim" required> Sim</label>
+          <label><input type="radio" name="routine" value="nao"> Não</label>
+          <label><input type="radio" name="routine" value="asvezes"> Às vezes</label>
+        </fieldset>
+
+        <button type="submit">GERAR ROTINA</button>
+      </form>
+
+      <aside class="diagnosis-result" id="diagnosisResult" aria-live="polite">
+        <span>RESULTADO</span>
+        <h3>Aguardando respostas.</h3>
+        <p>O resultado aparecerá aqui.</p>
+      </aside>
+    </section>
+
+    <section class="plans" id="planos" aria-labelledby="planosTitle">
+      <header class="section-title centered">
+        <span>04 | ASSINATURAS</span>
+        <h2 id="planosTitle">Planos BioVita</h2>
+      </header>
+
+      <div class="plans-grid">
+        <article>
+          <span>01</span>
+          <h3>Essencial</h3>
+          <p>Para iniciar uma rotina simples com um produto principal.</p>
+          <button class="choose-plan" data-plan="Essencial">ESCOLHER</button>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Controle</h3>
+          <p>Para foco em oleosidade, poros e tendência acneica.</p>
+          <button class="choose-plan" data-plan="Controle">ESCOLHER</button>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Repair</h3>
+          <p>Para manchas pós-acne, uniformização e barreira cutânea.</p>
+          <button class="choose-plan" data-plan="Repair">ESCOLHER</button>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Complete</h3>
+          <p>Rotina com limpeza, reparação, renovação e diagnóstico.</p>
+          <button class="choose-plan" data-plan="Complete">ESCOLHER</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="sobre" aria-labelledby="sobreTitle">
+      <div class="about-mark">BV</div>
+      <div>
+        <span>05 | SOBRE</span>
+        <h2 id="sobreTitle">Dermocosmética com estética de marca.</h2>
+      </div>
+      <p>A BioVita Dermo é uma marca protótipo de dermocosméticos criada para unir linguagem dermatológica, visual premium e atendimento consultivo. O objetivo não é prometer tratamento médico, mas apresentar uma experiência de skincare clara, elegante e comercialmente convincente.</p>
+    </section>
+
+    <section class="contact" id="contato" aria-labelledby="contatoTitle">
+      <header class="section-title split">
+        <div>
+          <span>06 | ATENDIMENTO</span>
+          <h2 id="contatoTitle">Ficha de interesse</h2>
+        </div>
+        <p>Use no estande para registrar visitantes interessados.</p>
+      </header>
+
+      <form class="lead-form" id="leadForm">
+        <label>
+          Nome
+          <input type="text" id="leadName" placeholder="Nome do visitante" required>
+        </label>
+        <label>
+          Interesse
+          <select id="leadInterest" required>
+            <option value="">Selecione</option>
+            <option>Seboclin</option>
+            <option>Anexregen</option>
+            <option>Keraclin</option>
+            <option>Plano Essencial</option>
+            <option>Plano Controle</option>
+            <option>Plano Repair</option>
+            <option>Plano Complete</option>
+          </select>
+        </label>
+        <label>
+          Observação
+          <textarea id="leadNote" placeholder="Tipo de pele, dúvida ou preferência"></textarea>
+        </label>
+        <button type="submit">GERAR FICHA</button>
+      </form>
+
+      <aside class="lead-card" id="leadCard">
+        <span>BIOVITA DERMO</span>
+        <h3>Ficha ainda não gerada.</h3>
+        <p>Após preencher, o resumo aparecerá aqui.</p>
+      </aside>
+    </section>
+  </main>
+
+  <div class="search-modal" id="searchModal" aria-hidden="true">
+    <div class="search-box">
+      <button id="closeSearch" aria-label="Fechar pesquisa"></button>
+      <span>PESQUISA</span>
+      <input type="search" id="searchInput" placeholder="Digite: acne, manchas, oleosidade..." />
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
+
+  <div class="plan-drawer" id="planDrawer" aria-hidden="true">
+    <button id="closePlan" aria-label="Fechar plano"></button>
+    <span>MEU PLANO</span>
+    <h3>Itens selecionados</h3>
+    <ul id="planItems"></ul>
+    <p class="drawer-note">Plano simbólico para simulação de atendimento no estande.</p>
+  </div>
+
+  <footer class="footer">
+    <span>BioVita Dermo</span>
+    <span>Projeto escolar | Dermocosméticos premium</span>
+    <span>2026</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
