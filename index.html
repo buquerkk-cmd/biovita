@@ -3,1599 +3,378 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>BIOVITA DERMO — Dermocosméticos</title>
-  <meta name="description" content="Site protótipo premium da BioVita Dermo: dermocosméticos, diagnóstico de pele, planos de assinatura e ficha de interesse." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta name="description" content="BioVita Dermo — dermocosméticos com estética premium, rotina funcional e atendimento personalizado." />
+  <title>BioVita Dermo</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --ink:#11110f;
+      --muted:#747567;
+      --line:#dad7cc;
+      --paper:#f7f3e8;
+      --paper2:#efeadf;
+      --leaf:#536442;
+      --leaf2:#7f8a69;
+      --white:#fff;
+      --shadow:0 28px 80px rgba(0,0,0,.12);
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--sans);
+      color:var(--ink);
+      background:var(--paper);
+      font-size:13px;
+      letter-spacing:.055em;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+
+    .site-frame{min-height:100vh;background:var(--paper)}
+
+    /* Header */
+    .header{
+      position:fixed;inset:0 0 auto;z-index:60;height:68px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 clamp(18px,3vw,44px);
+      background:rgba(247,243,232,.88);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(17,17,15,.12);
+    }
+    .header-left,.header-right{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+    .hamb{width:28px;height:20px;border:0;background:transparent;display:flex;flex-direction:column;justify-content:space-between;padding:0}
+    .hamb span{height:1px;background:var(--ink);width:100%;display:block}
+    .brand{
+      display:flex;align-items:center;gap:12px;min-width:0;
+      font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.05em;color:var(--leaf);
+    }
+    .brand img{width:34px;height:34px;object-fit:cover;border-radius:50%;border:1px solid rgba(83,100,66,.18)}
+    .brand small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.34em;font-weight:400;color:var(--muted);margin-top:-2px}
+    .header-link{border:0;background:transparent;text-transform:uppercase;font-size:10px;letter-spacing:.18em;color:var(--ink);opacity:.74}
+    .header-link:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
+    .cart-pill{display:flex;align-items:center;gap:7px;opacity:1}
+    .cart-count{display:inline-grid;place-items:center;min-width:18px;height:18px;border:1px solid var(--ink);border-radius:999px;font-size:9px;line-height:1}
+
+    /* Menu overlay */
+    .overlay{position:fixed;inset:0;z-index:100;background:var(--paper);transform:translateX(-105%);transition:transform .56s cubic-bezier(.76,0,.24,1);display:grid;grid-template-columns:320px 1fr;box-shadow:var(--shadow)}
+    .overlay.open{transform:translateX(0)}
+    .close{position:absolute;top:22px;left:34px;border:0;background:transparent;font-size:28px;line-height:1;color:var(--ink)}
+    .menu-main{border-right:1px solid var(--line);padding:94px 44px 40px}
+    .menu-logo{font-family:var(--serif);font-size:34px;line-height:.88;color:var(--leaf);font-weight:700;margin-bottom:52px}
+    .menu-logo small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.44em;font-weight:300;color:var(--muted);margin-top:12px}
+    .menu-item{display:block;text-transform:uppercase;font-size:12px;letter-spacing:.18em;padding:15px 0;border-bottom:1px solid transparent;color:var(--ink)}
+    .menu-item:hover{border-bottom-color:var(--ink)}
+    .menu-sub{padding:110px 70px 40px;display:grid;grid-template-columns:minmax(260px,420px) minmax(320px,520px);gap:70px;align-content:start}
+    .menu-title{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+    .menu-product{display:grid;grid-template-columns:46px 1fr auto;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+    .menu-product b{font-family:var(--serif);font-size:24px;color:var(--ink);font-weight:400}.menu-product span,.menu-product small{font-size:10px;text-transform:uppercase;color:var(--muted)}
+    .menu-panel{background:var(--white);border:1px solid var(--line);padding:24px}.menu-panel img{height:360px;width:100%;object-fit:cover;object-position:center;border:1px solid var(--line)}
+
+    /* Hero */
+    .hero{min-height:100vh;padding-top:68px;display:grid;grid-template-columns:42% 58%;position:relative;background:var(--paper);border-bottom:1px solid var(--line)}
+    .hero-copy{padding:54px clamp(22px,4vw,64px) 42px;display:flex;flex-direction:column;justify-content:space-between;min-height:calc(100vh - 68px);position:relative;z-index:2}
+    .eyebrow{text-transform:uppercase;font-size:10px;letter-spacing:.26em;color:var(--muted)}
+    .hero h1{font-family:var(--serif);font-size:clamp(58px,9vw,132px);line-height:.82;font-weight:700;letter-spacing:-.04em;color:var(--leaf);max-width:760px;text-transform:uppercase}
+    .hero h1 em{display:block;font-style:italic;font-weight:400;color:var(--ink);font-size:.34em;letter-spacing:.02em;text-transform:none;margin-top:16px}
+    .hero-text{max-width:360px;color:#47483e;font-size:13px;line-height:1.9;letter-spacing:.05em}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:14px 22px;text-transform:uppercase;font-size:10px;letter-spacing:.2em;display:inline-flex;align-items:center;justify-content:center;min-height:43px;transition:.22s ease}
+    .btn.dark{background:var(--ink);color:var(--white)}.btn:hover{background:var(--leaf);border-color:var(--leaf);color:var(--white)}
+    .hero-visual{position:relative;min-height:calc(100vh - 68px);overflow:hidden;background:#e7e2d5}
+    .hero-visual img{height:100%;width:100%;object-fit:cover;object-position:center}
+    .hero-visual::after{content:"BIOVITA";position:absolute;right:-4vw;bottom:-2.5vw;font-family:var(--serif);font-size:clamp(88px,14vw,230px);line-height:.8;color:rgba(255,255,255,.38);font-weight:700;letter-spacing:-.05em;pointer-events:none}
+    .hero-info{position:absolute;right:28px;top:28px;background:rgba(247,243,232,.9);border:1px solid rgba(255,255,255,.6);padding:18px 20px;max-width:250px;backdrop-filter:blur(8px)}
+    .hero-info b{font-family:var(--serif);font-size:22px;color:var(--leaf);display:block;line-height:1;margin-bottom:10px}.hero-info p{font-size:11px;line-height:1.7;color:#525348}
+
+    .section{padding:clamp(62px,8vw,112px) clamp(22px,4vw,58px);background:var(--paper)}
+    .section.dark{background:var(--ink);color:var(--white)}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:42px;border-bottom:1px solid var(--line);padding-bottom:26px}
+    .section-head h2{font-family:var(--serif);font-size:clamp(42px,6vw,86px);font-weight:500;letter-spacing:-.03em;line-height:.9;color:var(--leaf)}
+    .section.dark .section-head{border-color:#2e2e29}.section.dark .section-head h2{color:#d7ddc7}
+    .section-head p{max-width:420px;color:var(--muted);line-height:1.8;font-size:12px}.section.dark .section-head p{color:rgba(255,255,255,.62)}
+
+    /* Products */
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .product-card{background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;min-width:0;transition:.22s ease}
+    .product-card:hover{background:#fbf8ef;box-shadow:0 18px 52px rgba(0,0,0,.08);transform:translateY(-3px)}
+    .product-photo{position:relative;aspect-ratio:3/4;background:#f4f1ea;overflow:hidden}.product-photo img{width:100%;height:100%;object-fit:contain;padding:24px;mix-blend-mode:multiply}.product-photo.cover img{object-fit:cover;padding:0;mix-blend-mode:normal}
+    .tag{position:absolute;top:16px;left:16px;font-size:9px;letter-spacing:.17em;color:var(--muted);text-transform:uppercase;background:rgba(247,243,232,.75);padding:6px 8px;border:1px solid rgba(0,0,0,.08)}
+    .product-body{padding:24px 22px 26px;display:flex;flex-direction:column;gap:10px;flex:1}.product-name{font-family:var(--serif);font-size:31px;font-weight:500;color:var(--leaf);letter-spacing:-.02em;line-height:.95}.active{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf2);font-weight:600}.desc{font-size:12px;line-height:1.72;color:#65665b;letter-spacing:.04em;min-height:82px}.price{font-family:var(--serif);font-size:28px;color:var(--ink);margin-top:auto}.product-actions{display:grid;gap:8px;margin-top:8px}.mini-btn{border:1px solid var(--ink);background:transparent;padding:11px 12px;font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--ink)}.mini-btn.dark{background:var(--ink);color:var(--white)}.mini-btn:hover{background:var(--leaf);border-color:var(--leaf);color:var(--white)}
+
+    /* Diagnosis */
+    .diag-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,70px);align-items:start}.diag-panel{background:var(--white);border:1px solid var(--line);padding:32px;box-shadow:0 16px 50px rgba(0,0,0,.05)}.question{border-top:1px solid var(--line);padding:26px 0}.question:first-child{border-top:0;padding-top:0}.q-title{display:flex;gap:18px;align-items:baseline;margin-bottom:18px;font-size:13px}.q-title span{font-size:10px;color:var(--muted);letter-spacing:.18em}.options{display:flex;flex-wrap:wrap;gap:8px}.opt{border:1px solid #aaa895;background:transparent;padding:9px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--ink)}.opt.selected,.opt:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}.result-card{border:1px solid var(--line);background:linear-gradient(135deg,#fff,#f5f0e5);padding:30px;display:none}.result-card.visible{display:block}.result-card .label{font-size:10px;color:var(--leaf);letter-spacing:.24em;text-transform:uppercase;margin-bottom:15px}.result-card h3{font-family:var(--serif);font-size:40px;color:var(--leaf);font-weight:500;line-height:.95;margin-bottom:14px}.result-card p{font-size:12px;line-height:1.8;color:#55564c;margin-bottom:20px}.routine-list{display:grid;gap:9px;margin:18px 0 24px}.routine-list div{border-bottom:1px solid var(--line);padding-bottom:8px;font-size:12px;color:#444}
 
-    :root {
-      --black: #090909;
-      --white: #fff;
-      --paper: #f6f5f1;
-      --paper-2: #ebe8e0;
-      --line: #d8d5cd;
-      --muted: #8a877f;
-      --green: #3d5a4a;
-      --green-2: #b8ccc0;
-      --red: #7a3e32;
-      --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      --sans: 'Inter', Arial, sans-serif;
-      --header: 64px;
-      --ease: cubic-bezier(.76,0,.24,1);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--white);
-      color: var(--black);
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: .07em;
-      overflow-x: hidden;
-    }
-
-    body.locked { overflow: hidden; }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea, select { font: inherit; }
-    button { color: inherit; }
-
-    ::selection { background: var(--black); color: var(--white); }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-    }
-
-    /* HEADER */
-    .site-header {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 60;
-      height: var(--header);
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      padding: 0 34px;
-      background: rgba(255, 255, 255, .94);
-      backdrop-filter: blur(10px);
-      border-bottom: .8px solid rgba(9,9,9,.12);
-    }
-
-    .header-left, .header-right {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .header-right { justify-content: flex-end; }
-
-    .hamburger {
-      display: inline-flex;
-      width: 31px;
-      height: 24px;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      width: 28px;
-      height: .8px;
-      background: var(--black);
-      display: block;
-      transition: transform .35s var(--ease), opacity .25s ease;
-    }
-
-    .brand-mark {
-      font-family: var(--serif);
-      font-size: 19px;
-      line-height: .86;
-      font-weight: 500;
-      letter-spacing: .34em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    .brand-mark small {
-      display: block;
-      margin-top: 4px;
-      font-family: var(--sans);
-      font-size: 8px;
-      font-weight: 300;
-      letter-spacing: .52em;
-      color: var(--muted);
-      transform: translateX(2px);
-    }
-
-    .header-action {
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      font-size: 10px;
-      letter-spacing: .17em;
-      text-transform: uppercase;
-      color: rgba(9,9,9,.68);
-      transition: color .2s ease;
-      white-space: nowrap;
-    }
-
-    .header-action:hover { color: var(--black); }
-
-    .plan-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .plan-count {
-      display: grid;
-      place-items: center;
-      width: 18px;
-      height: 18px;
-      border: .8px solid var(--black);
-      border-radius: 999px;
-      font-size: 9px;
-      letter-spacing: 0;
-      color: var(--black);
-    }
-
-    /* OVERLAYS */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 120;
-      background: rgba(255,255,255,.98);
-      transform: translateX(-105%);
-      transition: transform .62s var(--ease);
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      border-right: .8px solid var(--line);
-    }
-
-    .overlay.open { transform: translateX(0); }
-
-    .overlay-close {
-      position: absolute;
-      top: 24px;
-      left: 38px;
-      width: 34px;
-      height: 34px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .overlay-close::before, .overlay-close::after {
-      content: '';
-      position: absolute;
-      top: 16px;
-      left: 2px;
-      width: 32px;
-      height: .8px;
-      background: var(--black);
-    }
-
-    .overlay-close::before { transform: rotate(45deg); }
-    .overlay-close::after { transform: rotate(-45deg); }
-
-    .menu-column {
-      padding: 92px 48px 44px;
-      border-right: .8px solid var(--line);
-    }
-
-    .menu-logo {
-      font-family: var(--serif);
-      font-size: 40px;
-      line-height: .9;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      margin-bottom: 42px;
-    }
-
-    .menu-logo small {
-      display: block;
-      margin-top: 8px;
-      font-family: var(--sans);
-      font-size: 10px;
-      letter-spacing: .45em;
-      color: var(--muted);
-    }
-
-    .menu-link {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      padding: 12px 0;
-      border-bottom: .8px solid transparent;
-      font-size: 12px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    .menu-link:hover { border-bottom-color: var(--black); }
-    .menu-link .dot { width: 4px; height: 4px; background: var(--green); border-radius: 50%; display: inline-block; margin-right: 9px; transform: translateY(-2px); }
-    .menu-link .code { color: var(--muted); font-size: 9px; }
-
-    .menu-panel {
-      padding: 92px 6vw 60px;
-      display: grid;
-      grid-template-columns: minmax(260px, 420px) 1fr;
-      gap: 70px;
-      align-items: start;
-    }
-
-    .panel-kicker, .kicker {
-      font-size: 10px;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .menu-collection { margin-top: 28px; border-top: .8px solid var(--line); }
-
-    .collection-row {
-      display: grid;
-      grid-template-columns: 46px 1fr auto;
-      gap: 24px;
-      align-items: baseline;
-      padding: 22px 0;
-      border-bottom: .8px solid var(--line);
-      cursor: pointer;
-    }
-
-    .collection-row:hover .collection-name { text-decoration: underline; }
-
-    .collection-num { color: var(--muted); font-size: 10px; letter-spacing: .15em; }
-    .collection-name { font-family: var(--serif); font-size: 28px; font-weight: 400; letter-spacing: .04em; }
-    .collection-tag { color: var(--muted); text-transform: uppercase; font-size: 10px; letter-spacing: .14em; }
-
-    .menu-preview {
-      min-height: 410px;
-      background: var(--paper);
-      border: .8px solid var(--line);
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-    }
-
-    .menu-preview-title {
-      position: absolute;
-      bottom: -16px;
-      right: -12px;
-      font-family: var(--serif);
-      font-size: clamp(70px, 10vw, 170px);
-      color: rgba(9,9,9,.05);
-      line-height: .8;
-      letter-spacing: -.04em;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-
-    .search-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 130;
-      background: rgba(255,255,255,.98);
-      transform: translateY(-105%);
-      transition: transform .55s var(--ease);
-      padding: 88px 40px 40px;
-    }
-
-    .search-overlay.open { transform: translateY(0); }
-
-    .search-box {
-      border: 0;
-      border-bottom: .8px solid var(--black);
-      width: min(900px, 100%);
-      font-family: var(--serif);
-      font-size: clamp(38px, 7vw, 92px);
-      font-weight: 300;
-      letter-spacing: .02em;
-      outline: 0;
-      padding: 20px 0;
-      background: transparent;
-      color: var(--black);
-    }
-
-    .search-results { margin-top: 42px; display: grid; gap: 14px; max-width: 640px; }
-    .search-result { display: grid; grid-template-columns: 54px 1fr auto; align-items: baseline; gap: 18px; padding: 18px 0; border-bottom: .8px solid var(--line); cursor: pointer; }
-    .search-result:hover .search-name { text-decoration: underline; }
-    .search-name { font-family: var(--serif); font-size: 26px; }
-    .search-desc { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .15em; }
-
-    .plan-drawer {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: min(440px, 100%);
-      z-index: 140;
-      background: var(--white);
-      border-left: .8px solid var(--line);
-      transform: translateX(105%);
-      transition: transform .55s var(--ease);
-      padding: 84px 34px 34px;
-      display: flex;
-      flex-direction: column;
-      gap: 26px;
-    }
-
-    .plan-drawer.open { transform: translateX(0); }
-
-    .drawer-close {
-      position: absolute;
-      top: 24px;
-      right: 28px;
-      background: transparent;
-      border: 0;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-    }
-
-    .drawer-close::before, .drawer-close::after {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 1px;
-      width: 28px;
-      height: .8px;
-      background: var(--black);
-    }
-
-    .drawer-close::before { transform: rotate(45deg); }
-    .drawer-close::after { transform: rotate(-45deg); }
-
-    .drawer-title { font-family: var(--serif); font-size: 42px; font-weight: 300; line-height: .95; }
-    .drawer-list { border-top: .8px solid var(--line); min-height: 90px; }
-    .drawer-item { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 17px 0; border-bottom: .8px solid var(--line); }
-    .drawer-item strong { font-family: var(--serif); font-size: 24px; font-weight: 400; }
-    .drawer-item span { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; }
-    .remove-item { background: transparent; border: 0; cursor: pointer; color: var(--muted); font-size: 18px; }
-    .drawer-empty { color: var(--muted); padding: 22px 0; line-height: 1.8; }
-
-    .drawer-actions { display: grid; gap: 10px; margin-top: auto; }
-
-    .scrim {
-      position: fixed;
-      inset: 0;
-      z-index: 110;
-      background: rgba(9,9,9,.22);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .35s ease;
-    }
-
-    .scrim.open { opacity: 1; pointer-events: auto; }
-
-    /* GENERAL */
-    section { position: relative; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 46px;
-      padding: 14px 28px;
-      border: .8px solid var(--black);
-      background: transparent;
-      color: var(--black);
-      text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: .2em;
-      cursor: pointer;
-      transition: background .22s ease, color .22s ease, border-color .22s ease;
-      white-space: nowrap;
-    }
-
-    .btn:hover { background: var(--black); color: var(--white); }
-    .btn.dark { background: var(--black); color: var(--white); }
-    .btn.dark:hover { background: var(--green); border-color: var(--green); }
-    .btn.full { width: 100%; }
-    .btn.small { min-height: 38px; padding: 10px 15px; font-size: 9px; }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: 1fr minmax(240px, 420px);
-      gap: 60px;
-      align-items: end;
-      padding: 76px 40px 42px;
-      border-top: .8px solid var(--line);
-      border-bottom: .8px solid var(--line);
-    }
-
-    .section-head h2 {
-      font-family: var(--serif);
-      font-size: clamp(42px, 7vw, 92px);
-      font-weight: 300;
-      line-height: .9;
-      letter-spacing: .01em;
-    }
-
-    .section-head h2 em { font-style: italic; color: var(--muted); }
-    .section-head p { color: var(--muted); line-height: 1.9; font-size: 12px; letter-spacing: .06em; }
-
-    .fade {
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity .72s ease, transform .72s ease;
-    }
-    .fade.visible { opacity: 1; transform: translateY(0); }
-
-    .marquee {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      border-top: .8px solid var(--line);
-      border-bottom: .8px solid var(--line);
-      background: var(--white);
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 28s linear infinite;
-    }
-
-    .marquee span {
-      display: inline-block;
-      padding: 16px 28px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .24em;
-      color: var(--muted);
-    }
-
-    @keyframes marquee { to { transform: translateX(-50%); } }
-
-    /* HERO */
-    .hero {
-      min-height: 100svh;
-      padding-top: var(--header);
-      display: grid;
-      grid-template-columns: 252px 1fr 36vw;
-      border-bottom: .8px solid var(--line);
-      overflow: hidden;
-    }
-
-    .hero-nav {
-      padding: 68px 32px 42px 40px;
-      border-right: .8px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: calc(100svh - var(--header));
-    }
-
-    .category-list { list-style: none; display: grid; gap: 10px; }
-    .category-list a { font-family: var(--serif); font-size: 32px; line-height: 1; letter-spacing: -.02em; }
-    .category-list a:hover { text-decoration: underline; }
-    .category-list li:first-child a::before { content: '•'; font-family: var(--sans); font-size: 16px; margin-right: 9px; vertical-align: middle; }
-
-    .hero-note {
-      font-size: 10px;
-      line-height: 1.9;
-      letter-spacing: .18em;
-      color: var(--muted);
-      text-transform: uppercase;
-      max-width: 170px;
-    }
-
-    .hero-main {
-      position: relative;
-      min-height: calc(100svh - var(--header));
-      padding: 58px 6vw 44px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      overflow: hidden;
-    }
-
-    .hero-topline {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 30px;
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-    }
-
-    .hero-title {
-      align-self: center;
-      font-family: var(--serif);
-      font-size: clamp(72px, 13vw, 210px);
-      font-weight: 300;
-      line-height: .78;
-      letter-spacing: -.055em;
-      text-transform: uppercase;
-      max-width: 760px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-title em {
-      display: block;
-      font-style: italic;
-      font-size: .48em;
-      line-height: .9;
-      color: var(--green);
-      letter-spacing: .01em;
-      margin-left: .38em;
-      text-transform: none;
-    }
-
-    .hero-copy {
-      display: grid;
-      grid-template-columns: minmax(200px, 280px) auto;
-      gap: 30px;
-      align-items: end;
-    }
-
-    .hero-copy p { color: var(--muted); line-height: 1.9; letter-spacing: .06em; }
-
-    .giant-brand {
-      position: absolute;
-      left: 6vw;
-      bottom: -20px;
-      z-index: 0;
-      font-family: var(--serif);
-      font-size: clamp(130px, 23vw, 360px);
-      font-weight: 600;
-      line-height: .75;
-      color: rgba(9,9,9,.035);
-      letter-spacing: -.055em;
-      pointer-events: none;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .hero-visual {
-      min-height: calc(100svh - var(--header));
-      border-left: .8px solid var(--line);
-      background: var(--paper);
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-    }
-
-    .hero-visual.dark { background: #151512; }
-
-    .visual-label {
-      position: absolute;
-      top: 28px;
-      left: 28px;
-      z-index: 2;
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .visual-brand {
-      position: absolute;
-      bottom: -10px;
-      right: -42px;
-      z-index: 0;
-      font-family: var(--serif);
-      font-size: clamp(82px, 14vw, 210px);
-      font-weight: 600;
-      line-height: .8;
-      color: rgba(255,255,255,.08);
-      letter-spacing: -.05em;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-
-    .skin-abstract, .product-render { width: min(72%, 280px); position: relative; z-index: 1; }
-
-    .hero-scroll {
-      position: absolute;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%);
-      z-index: 5;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      display: grid;
-      gap: 8px;
-      justify-items: center;
-      color: var(--muted);
-      font-size: 9px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
-
-    .scroll-line { width: .8px; height: 44px; background: linear-gradient(var(--muted), transparent); animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 50% { transform: scaleY(1.22); opacity: .45; } }
-
-    /* EDITORIAL */
-    .editorial-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 74vh;
-    }
-
-    .editorial-panel {
-      position: relative;
-      overflow: hidden;
-      min-height: 560px;
-      display: grid;
-      place-items: center;
-      background: var(--paper);
-    }
-
-    .editorial-panel:nth-child(1) { background: #151512; }
-
-    .editorial-word {
-      position: absolute;
-      left: -6px;
-      right: -6px;
-      bottom: -22px;
-      font-family: var(--serif);
-      font-size: clamp(84px, 14vw, 230px);
-      font-weight: 600;
-      line-height: .75;
-      color: rgba(9,9,9,.055);
-      letter-spacing: -.05em;
-      text-transform: uppercase;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .editorial-panel:nth-child(1) .editorial-word { color: rgba(255,255,255,.075); }
-
-    .editorial-caption {
-      position: absolute;
-      left: 34px;
-      top: 34px;
-      max-width: 220px;
-      color: rgba(255,255,255,.55);
-      font-size: 10px;
-      line-height: 1.9;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      z-index: 2;
-    }
-
-    .editorial-panel:nth-child(2) .editorial-caption { color: var(--muted); }
-
-    /* PRODUCTS */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-left: .8px solid var(--line);
-    }
-
-    .product-card {
-      border-right: .8px solid var(--line);
-      border-bottom: .8px solid var(--line);
-      background: var(--white);
-      overflow: hidden;
-    }
-
-    .product-media {
-      position: relative;
-      aspect-ratio: 3/4;
-      background: var(--paper);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      transition: background .32s ease;
-    }
-
-    .product-card:hover .product-media { background: var(--paper-2); }
-
-    .product-num {
-      position: absolute;
-      top: 22px;
-      left: 22px;
-      font-size: 9px;
-      letter-spacing: .18em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .product-back {
-      position: absolute;
-      bottom: -8px;
-      right: -8px;
-      font-family: var(--serif);
-      font-size: clamp(52px, 7vw, 130px);
-      font-weight: 600;
-      line-height: .8;
-      letter-spacing: -.05em;
-      color: rgba(9,9,9,.045);
-      text-transform: uppercase;
-      pointer-events: none;
-    }
+    /* Plans */
+    .plans{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .plan{background:var(--paper);padding:32px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative}.plan.featured{background:var(--leaf);color:#fff}.plan-num{font-size:10px;letter-spacing:.18em;color:var(--muted);margin-bottom:22px}.plan.featured .plan-num{color:rgba(255,255,255,.62)}.plan h3{font-family:var(--serif);font-size:32px;font-weight:500;line-height:.95;margin-bottom:10px}.plan p{font-size:11px;color:var(--muted);line-height:1.7;min-height:50px}.plan.featured p{color:rgba(255,255,255,.72)}.plan ul{list-style:none;margin:24px 0;display:grid;gap:10px}.plan li{font-size:11px;color:#56574d;display:flex;gap:8px}.plan li::before{content:"";width:12px;height:1px;background:currentColor;margin-top:8px;flex:none}.plan.featured li{color:rgba(255,255,255,.77)}.plan .price{font-size:34px;margin:18px 0}.plan.featured .price{color:#fff}.badge{position:absolute;top:16px;right:16px;background:#10100f;color:white;font-size:8px;letter-spacing:.16em;text-transform:uppercase;padding:5px 9px}
 
-    .product-info { padding: 28px 28px 32px; border-top: .8px solid var(--line); }
-    .product-cat { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .22em; margin-bottom: 10px; }
-    .product-name { font-family: var(--serif); font-size: 34px; line-height: .9; font-weight: 400; letter-spacing: .01em; margin-bottom: 8px; }
-    .product-active { color: var(--green); font-size: 10px; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 16px; }
-    .product-desc { color: var(--muted); font-size: 12px; line-height: 1.85; letter-spacing: .045em; min-height: 88px; }
-    .product-actions { display: grid; gap: 8px; margin-top: 24px; }
+    /* Institutional */
+    .poster-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}.poster{background:#fff;border:1px solid var(--line);padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.06)}.poster img{width:100%;height:560px;object-fit:cover;object-position:top;border:1px solid rgba(0,0,0,.06)}
 
-    /* DIAG */
-    .diagnosis { background: var(--paper); }
-    .diagnosis-body { padding: 42px 40px 78px; }
-    .diag-step { display: grid; grid-template-columns: 72px minmax(260px, 420px) 1fr; gap: 24px; padding: 31px 0; border-bottom: .8px solid var(--line); align-items: start; }
-    .diag-num { color: var(--muted); font-size: 10px; letter-spacing: .16em; padding-top: 3px; }
-    .diag-q { font-size: 13px; line-height: 1.7; letter-spacing: .07em; }
-    .diag-options { display: flex; flex-wrap: wrap; gap: 8px; }
-    .choice {
-      min-height: 36px;
-      padding: 9px 20px;
-      border: .8px solid var(--muted);
-      background: transparent;
-      cursor: pointer;
-      color: var(--black);
-      text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: .16em;
-      transition: background .18s ease, color .18s ease, border-color .18s ease;
-    }
-    .choice:hover, .choice.selected { background: var(--black); color: var(--white); border-color: var(--black); }
-
-    .diag-control { display: flex; justify-content: center; margin-top: 42px; }
-    .diag-result {
-      display: none;
-      max-width: 880px;
-      margin: 46px auto 0;
-      background: var(--white);
-      border: .8px solid var(--line);
-      padding: 42px;
-    }
-    .diag-result.open { display: block; }
-    .result-grid { display: grid; grid-template-columns: 1fr 230px; gap: 38px; align-items: end; }
-    .result-title { font-family: var(--serif); font-size: clamp(34px, 5vw, 62px); font-weight: 300; line-height: .95; margin: 12px 0 16px; }
-    .result-copy { color: var(--muted); font-size: 12px; line-height: 1.9; }
-    .result-stack { display: grid; gap: 10px; }
-
-    /* PLANS */
-    .plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-left: .8px solid var(--line); }
-    .plan-card {
-      position: relative;
-      min-height: 440px;
-      padding: 38px 28px 30px;
-      border-right: .8px solid var(--line);
-      border-bottom: .8px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      transition: background .25s ease, color .25s ease;
-    }
-    .plan-card:hover { background: var(--paper); }
-    .plan-card.featured { background: var(--black); color: var(--white); }
-    .plan-card.featured .plan-num, .plan-card.featured .plan-desc, .plan-card.featured .plan-item { color: rgba(255,255,255,.58); }
-    .plan-card.featured .btn { border-color: var(--white); color: var(--white); }
-    .plan-card.featured .btn:hover { background: var(--white); color: var(--black); }
-    .plan-num { color: var(--muted); font-size: 10px; letter-spacing: .16em; margin-bottom: 34px; }
-    .plan-label { position: absolute; top: 18px; right: 18px; background: var(--green); color: var(--white); padding: 5px 9px; font-size: 8px; letter-spacing: .15em; text-transform: uppercase; }
-    .plan-name { font-family: var(--serif); font-size: 33px; line-height: .9; font-weight: 400; margin-bottom: 12px; }
-    .plan-desc { color: var(--muted); line-height: 1.7; font-size: 11px; margin-bottom: 26px; }
-    .plan-items { list-style: none; display: grid; gap: 11px; margin-bottom: 34px; }
-    .plan-item { color: var(--muted); font-size: 11px; line-height: 1.5; display: flex; gap: 10px; }
-    .plan-item::before { content: ''; width: 15px; height: .8px; background: currentColor; flex: 0 0 15px; margin-top: 10px; }
-    .plan-card .btn { margin-top: auto; }
-
-    /* ABOUT */
-    .about {
-      background: var(--black);
-      color: var(--white);
-      display: grid;
-      grid-template-columns: minmax(340px, 1fr) 1fr;
-      gap: 74px;
-      padding: 92px 40px;
-      border-top: .8px solid #1c1c1c;
-    }
-
-    .about-title { font-family: var(--serif); font-size: clamp(54px, 8vw, 124px); font-weight: 300; line-height: .82; letter-spacing: -.03em; }
-    .about-title em { font-style: italic; color: var(--green-2); }
-    .about-copy { color: rgba(255,255,255,.58); line-height: 1.9; max-width: 430px; margin-top: 34px; }
-    .values { border-top: .8px solid rgba(255,255,255,.18); }
-    .value { display: grid; grid-template-columns: 48px 1fr; gap: 22px; padding: 26px 0; border-bottom: .8px solid rgba(255,255,255,.18); }
-    .value-num { color: rgba(255,255,255,.38); font-size: 10px; letter-spacing: .15em; }
-    .value-name { font-family: var(--serif); font-size: 26px; line-height: 1; margin-bottom: 9px; }
-    .value-copy { color: rgba(255,255,255,.58); line-height: 1.75; font-size: 12px; }
-
-    /* CONTACT */
-    .contact { padding: 86px 40px; }
-    .contact-grid { display: grid; grid-template-columns: minmax(300px, 520px) 1fr; gap: 76px; align-items: start; }
-    .contact-title { font-family: var(--serif); font-size: clamp(44px, 7vw, 94px); line-height: .86; font-weight: 300; }
-    .contact-title em { color: var(--muted); font-style: italic; }
-    .contact-copy { color: var(--muted); line-height: 1.9; max-width: 380px; margin-top: 24px; }
-    .form { display: grid; gap: 18px; }
-    .field { display: grid; gap: 8px; }
-    .field label { color: var(--muted); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; }
-    .field input, .field textarea, .field select {
-      width: 100%;
-      background: transparent;
-      border: 0;
-      border-bottom: .8px solid var(--line);
-      color: var(--black);
-      outline: 0;
-      padding: 12px 0;
-      font-size: 13px;
-      letter-spacing: .055em;
-      resize: none;
-      border-radius: 0;
-      appearance: none;
-    }
-    .field textarea { min-height: 84px; }
-    .field input:focus, .field textarea:focus, .field select:focus { border-bottom-color: var(--black); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-    .legal-note { color: var(--muted); font-size: 10px; line-height: 1.8; letter-spacing: .06em; }
-
-    /* TICKET MODAL */
-    .ticket-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 160;
-      background: rgba(9,9,9,.45);
-      display: none;
-      place-items: center;
-      padding: 22px;
-    }
-    .ticket-modal.open { display: grid; }
-    .ticket {
-      width: min(660px, 100%);
-      max-height: calc(100svh - 44px);
-      overflow: auto;
-      background: var(--white);
-      color: var(--black);
-      border: .8px solid var(--black);
-      padding: 34px;
-      position: relative;
-    }
-    .ticket-close { position: absolute; top: 16px; right: 16px; border: 0; background: transparent; font-size: 24px; cursor: pointer; }
-    .ticket-brand { font-family: var(--serif); font-size: 34px; line-height: .9; letter-spacing: .18em; text-transform: uppercase; }
-    .ticket-brand small { display: block; margin-top: 6px; font-family: var(--sans); font-size: 8px; letter-spacing: .48em; color: var(--muted); }
-    .ticket-title { font-family: var(--serif); font-size: 44px; font-weight: 300; line-height: .94; margin: 38px 0 22px; }
-    .ticket-lines { border-top: .8px solid var(--line); margin-top: 24px; }
-    .ticket-line { display: grid; grid-template-columns: 180px 1fr; gap: 18px; padding: 14px 0; border-bottom: .8px solid var(--line); }
-    .ticket-line span:first-child { color: var(--muted); text-transform: uppercase; font-size: 9px; letter-spacing: .18em; }
-    .ticket-disclaimer { margin-top: 24px; color: var(--muted); font-size: 10px; line-height: 1.8; }
-    .ticket-actions { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      z-index: 200;
-      background: var(--black);
-      color: var(--white);
-      padding: 13px 26px;
-      font-size: 10px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .25s ease, transform .25s ease;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    footer {
-      padding: 40px;
-      border-top: .8px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 28px;
-      align-items: end;
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.7;
-    }
+    /* Form */
+    .lead-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px}.form{background:#fff;border:1px solid var(--line);padding:30px}.field{display:grid;gap:8px;margin-bottom:18px}.field label{font-size:9px;text-transform:uppercase;letter-spacing:.22em;color:var(--muted)}.field input,.field select,.field textarea{border:0;border-bottom:1px solid var(--line);padding:12px 0;background:transparent;outline:0;color:var(--ink);letter-spacing:.06em}.field textarea{min-height:96px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-bottom-color:var(--ink)}.ticket{margin-top:26px;border:1px solid var(--line);background:var(--paper);padding:22px;display:none}.ticket.visible{display:block}.ticket h3{font-family:var(--serif);font-size:30px;color:var(--leaf);margin-bottom:14px}.ticket-row{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding:10px 0;font-size:12px}.ticket-row b{font-weight:600;color:var(--ink)}
 
-    .footer-brand { color: var(--black); font-family: var(--serif); font-size: 16px; letter-spacing: .3em; line-height: 1; text-transform: uppercase; }
-    .footer-brand small { display: block; margin-top: 6px; font-family: var(--sans); font-size: 8px; letter-spacing: .48em; color: var(--muted); }
+    /* Drawer */
+    .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.22);z-index:80;opacity:0;pointer-events:none;transition:.22s}.drawer-backdrop.open{opacity:1;pointer-events:auto}.drawer{position:fixed;top:0;right:0;width:min(420px,92vw);height:100vh;background:var(--paper);z-index:90;transform:translateX(105%);transition:transform .38s cubic-bezier(.76,0,.24,1);border-left:1px solid var(--line);display:flex;flex-direction:column}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--line)}.drawer-head h3{font-family:var(--serif);font-size:28px;color:var(--leaf);font-weight:500}.drawer-close{border:0;background:transparent;font-size:24px}.drawer-body{padding:24px;overflow:auto;flex:1}.cart-empty{color:var(--muted);line-height:1.7}.cart-item{display:grid;grid-template-columns:1fr auto;gap:14px;border-bottom:1px solid var(--line);padding:14px 0}.cart-item b{font-family:var(--serif);font-size:21px;color:var(--leaf);font-weight:500}.cart-item span{font-size:11px;color:var(--muted);display:block;margin-top:4px}.cart-remove{border:0;background:transparent;text-decoration:underline;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em}.drawer-foot{padding:24px;border-top:1px solid var(--line);display:grid;gap:12px}.total{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--serif);font-size:30px;color:var(--leaf)}
 
-    /* SVG helpers */
-    .bottle-svg { width: min(60%, 190px); filter: drop-shadow(0 32px 32px rgba(0,0,0,.08)); position: relative; z-index: 2; transition: transform .35s ease; }
-    .product-card:hover .bottle-svg { transform: translateY(-7px) scale(1.018); }
-    .dark .bottle-svg { filter: drop-shadow(0 34px 38px rgba(0,0,0,.45)); }
-
-    @media (max-width: 1100px) {
-      .hero { grid-template-columns: 210px 1fr; }
-      .hero-visual { display: none; }
-      .products { grid-template-columns: 1fr; }
-      .plans-grid { grid-template-columns: repeat(2, 1fr); }
-      .diag-step { grid-template-columns: 52px 1fr; }
-      .diag-options { grid-column: 2; }
-      .menu-panel { grid-template-columns: 1fr; }
-      .menu-preview { display: none; }
-    }
+    /* Search */
+    .search-bar{display:none;background:#fff;border:1px solid var(--line);padding:18px;margin-bottom:24px;gap:12px}.search-bar.visible{display:flex}.search-bar input{flex:1;border:0;border-bottom:1px solid var(--line);outline:0;padding:10px 0;background:transparent;font-size:14px}.search-bar button{border:1px solid var(--ink);background:var(--ink);color:#fff;text-transform:uppercase;font-size:10px;letter-spacing:.16em;padding:0 18px}
 
-    @media (max-width: 760px) {
-      :root { --header: 58px; }
-      .site-header { grid-template-columns: auto 1fr auto; padding: 0 18px; }
-      .brand-mark { font-size: 15px; justify-self: center; }
-      .header-left { gap: 12px; }
-      .header-right .header-action:not(.plan-pill) { display: none; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-nav { display: none; }
-      .hero-main { padding: 38px 22px 42px; min-height: calc(100svh - var(--header)); }
-      .hero-title { font-size: clamp(78px, 24vw, 126px); }
-      .hero-copy { grid-template-columns: 1fr; }
-      .hero-topline { display: block; line-height: 1.9; }
-      .section-head { grid-template-columns: 1fr; gap: 22px; padding: 58px 22px 32px; }
-      .editorial-grid { grid-template-columns: 1fr; }
-      .editorial-panel { min-height: 440px; }
-      .diagnosis-body, .contact { padding: 34px 22px 58px; }
-      .diag-step { grid-template-columns: 1fr; gap: 12px; }
-      .diag-options { grid-column: auto; }
-      .result-grid, .contact-grid, .about { grid-template-columns: 1fr; }
-      .plans-grid { grid-template-columns: 1fr; }
-      .plan-card { min-height: auto; }
-      .form-row { grid-template-columns: 1fr; gap: 18px; }
-      .overlay { grid-template-columns: 1fr; }
-      .menu-column { padding: 86px 34px 44px; }
-      .menu-panel { display: none; }
-      .search-overlay { padding: 78px 22px 34px; }
-      .ticket-line { grid-template-columns: 1fr; gap: 6px; }
-      footer { flex-direction: column; align-items: flex-start; padding: 34px 22px; }
-    }
+    footer{background:#10100f;color:#fff;padding:34px clamp(22px,4vw,58px);display:flex;justify-content:space-between;gap:28px;align-items:end}footer .foot-brand{font-family:var(--serif);font-size:28px;color:#d7ddc7;line-height:.9}footer small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.35em;color:rgba(255,255,255,.55);margin-top:9px}footer p{font-size:10px;color:rgba(255,255,255,.55);line-height:1.7;text-align:right;max-width:460px}
 
-    @media print {
-      body > *:not(.ticket-modal) { display: none !important; }
-      .ticket-modal { position: static; display: block !important; background: #fff; padding: 0; }
-      .ticket { max-height: none; width: 100%; border: 0; }
-      .ticket-close, .ticket-actions { display: none; }
-    }
+    .fade{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.fade.visible{opacity:1;transform:none}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-    }
+    @media(max-width:1180px){.product-grid,.plans{grid-template-columns:repeat(2,1fr)}.poster-grid{grid-template-columns:1fr 1fr}.poster-grid .poster:last-child{grid-column:1/-1}.poster img{height:520px}.hero{grid-template-columns:1fr}.hero-copy{min-height:auto;gap:36px}.hero-visual{min-height:58vh}.menu-sub{grid-template-columns:1fr}.menu-panel{display:none}}
+    @media(max-width:760px){body{font-size:12px}.header{height:64px}.header-right .header-link:not(.cart-pill){display:none}.brand{font-size:17px}.brand img{width:30px;height:30px}.hero{padding-top:64px}.hero h1{font-size:clamp(52px,17vw,92px)}.hero-copy{padding:36px 18px}.hero-visual{min-height:54vh}.hero-info{display:none}.section{padding:58px 18px}.section-head{display:block}.section-head h2{margin-bottom:18px}.product-grid,.plans,.diag-wrap,.lead-grid,.poster-grid{grid-template-columns:1fr}.desc{min-height:auto}.poster img{height:auto}.overlay{grid-template-columns:1fr}.menu-main{padding:86px 30px}.menu-sub{display:none}.footer,footer{display:block}footer p{text-align:left;margin-top:22px}.step-help{display:none}}
+    @media print{.header,.drawer,.drawer-backdrop,.overlay,.hero,.section:not(#contato),footer,.btn,.mini-btn{display:none!important}#contato{display:block!important;padding:0;background:#fff}.lead-grid{display:block}.contato-left,.form{display:none}.ticket{display:block!important;border:2px solid #111;padding:28px}.ticket-row{font-size:14px}body{background:#fff}}
   </style>
 </head>
 <body>
-  <div class="scrim" id="scrim"></div>
-
-  <header class="site-header">
-    <div class="header-left">
-      <button class="hamburger" type="button" aria-label="Abrir menu" data-open-menu><span></span><span></span><span></span></button>
-      <button class="header-action" type="button" data-open-search>PESQUISA</button>
-    </div>
-
-    <a class="brand-mark" href="#hero" aria-label="BioVita Dermo">BIOVITA<small>DERMO</small></a>
-
-    <nav class="header-right" aria-label="Ações rápidas">
-      <a class="header-action" href="#diagnostico">DIAGNÓSTICO</a>
-      <button class="header-action plan-pill" type="button" data-open-plan>MEU PLANO <span class="plan-count" data-plan-count>0</span></button>
-      <a class="header-action" href="#contato">ATENDIMENTO</a>
-    </nav>
-  </header>
-
-  <aside class="overlay" id="menuOverlay" aria-hidden="true">
-    <button class="overlay-close" type="button" aria-label="Fechar menu" data-close-all></button>
-    <div class="menu-column">
-      <div class="menu-logo">BIOVITA<small>DERMO</small></div>
-      <a class="menu-link" href="#hero" data-close-all><span><span class="dot"></span>Início</span><span class="code">00</span></a>
-      <a class="menu-link" href="#nova-rotina" data-close-all><span>Nova Rotina</span><span class="code">01</span></a>
-      <a class="menu-link" href="#produtos" data-close-all><span>Produtos</span><span class="code">02</span></a>
-      <a class="menu-link" href="#diagnostico" data-close-all><span>Diagnóstico</span><span class="code">03</span></a>
-      <a class="menu-link" href="#assinaturas" data-close-all><span>Assinaturas</span><span class="code">04</span></a>
-      <a class="menu-link" href="#sobre" data-close-all><span>Sobre</span><span class="code">05</span></a>
-      <a class="menu-link" href="#contato" data-close-all><span>Ficha</span><span class="code">06</span></a>
-    </div>
-    <div class="menu-panel">
-      <div>
-        <div class="panel-kicker">Coleção dermatológica</div>
-        <div class="menu-collection">
-          <a href="#produtos" class="collection-row" data-close-all>
-            <span class="collection-num">01 |</span><span class="collection-name">Seboclin</span><span class="collection-tag">Limpeza</span>
-          </a>
-          <a href="#produtos" class="collection-row" data-close-all>
-            <span class="collection-num">02 |</span><span class="collection-name">Anexregen</span><span class="collection-tag">Reparação</span>
-          </a>
-          <a href="#produtos" class="collection-row" data-close-all>
-            <span class="collection-num">03 |</span><span class="collection-name">Keraclin</span><span class="collection-tag">Renovação</span>
-          </a>
-        </div>
+  <div class="site-frame">
+    <header class="header">
+      <div class="header-left">
+        <button class="hamb" aria-label="Abrir menu" onclick="openMenu()"><span></span><span></span><span></span></button>
+        <a href="#inicio" class="brand"><img src="assets/logo-biovita.jpg" alt="Logo BioVita"><span>BioVita<small>DERMO</small></span></a>
       </div>
-      <div class="menu-preview" aria-hidden="true">
-        <svg class="bottle-svg" viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="58" y="28" width="64" height="18" rx="3" fill="#bdb8ad"/>
-          <rect x="48" y="44" width="84" height="230" rx="42" fill="#dedad2" stroke="#c7c2b8" stroke-width="1"/>
-          <rect x="60" y="72" width="60" height="156" rx="30" fill="#d1ccc2"/>
-          <ellipse cx="90" cy="150" rx="24" ry="34" fill="#3d5a4a" opacity=".11"/>
-          <text x="90" y="257" text-anchor="middle" font-size="9" letter-spacing="2.4" fill="#7e7a72" font-family="Georgia,serif">BIOVITA</text>
-        </svg>
-        <div class="menu-preview-title">DERMO</div>
+      <div class="header-right">
+        <button class="header-link" onclick="toggleSearch()">Pesquisa</button>
+        <a class="header-link" href="#diagnostico">Diagnóstico</a>
+        <button class="header-link cart-pill" onclick="openCart()">Meu plano <span class="cart-count" id="cartCount">0</span></button>
+        <a class="header-link" href="#contato">Atendimento</a>
       </div>
-    </div>
-  </aside>
+    </header>
 
-  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
-    <button class="overlay-close" type="button" aria-label="Fechar pesquisa" data-close-all></button>
-    <label class="sr-only" for="searchInput">Pesquisar produtos</label>
-    <input id="searchInput" class="search-box" type="search" placeholder="PESQUISA" autocomplete="off" />
-    <div class="search-results" id="searchResults"></div>
-  </div>
-
-  <aside class="plan-drawer" id="planDrawer" aria-hidden="true">
-    <button class="drawer-close" type="button" aria-label="Fechar plano" data-close-all></button>
-    <div class="kicker">Cesto de rotina</div>
-    <h2 class="drawer-title">Meu Plano<br>BioVita</h2>
-    <div class="drawer-list" id="drawerList"></div>
-    <div class="drawer-actions">
-      <button class="btn dark full" type="button" onclick="scrollToFicha()">Preencher ficha</button>
-      <button class="btn full" type="button" onclick="limparPlano()">Limpar plano</button>
-    </div>
-  </aside>
-
-  <main>
-    <section id="hero" class="hero">
-      <aside class="hero-nav">
-        <ul class="category-list">
-          <li><a href="#produtos">Oleosidade</a></li>
-          <li><a href="#produtos">Acne</a></li>
-          <li><a href="#produtos">Manchas</a></li>
-          <li><a href="#produtos">Textura</a></li>
-          <li><a href="#assinaturas">Assinaturas</a></li>
-        </ul>
-        <p class="hero-note">Cuidado dermatológico com estética de coleção.</p>
-      </aside>
-
-      <div class="hero-main">
-        <div class="hero-topline"><span>Dermocosméticos — coleção escolar 2026</span><span>01 | Nova rotina</span></div>
-        <h1 class="hero-title fade">PELE<br>TRATA<br>DA <em>com precisão.</em></h1>
-        <div class="hero-copy">
-          <p>Limpeza, reparação e renovação cutânea em uma experiência simples, técnica e visualmente premium.</p>
-          <div>
-            <a class="btn dark" href="#diagnostico">Fazer diagnóstico</a>
-            <a class="btn" href="#produtos">Ver produtos</a>
-          </div>
-        </div>
-        <div class="giant-brand">BIOVITA</div>
-      </div>
-
-      <div class="hero-visual dark">
-        <div class="visual-label">The Dermo Routine</div>
-        <svg class="skin-abstract" viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <ellipse cx="150" cy="190" rx="78" ry="118" fill="#2a2a25" stroke="#4a4a42" stroke-width=".8"/>
-          <ellipse cx="150" cy="170" rx="46" ry="64" fill="#33332d" stroke="#5c5c52" stroke-width=".5"/>
-          <circle cx="132" cy="158" r="5" fill="#b8ccc0" opacity=".45"/>
-          <circle cx="168" cy="158" r="5" fill="#b8ccc0" opacity=".45"/>
-          <path d="M133 198Q150 210 167 198" stroke="#b8ccc0" stroke-width="1" opacity=".35"/>
-          <path d="M150 82V280" stroke="#b8ccc0" stroke-width=".6" stroke-dasharray="2 8" opacity=".3"/>
-          <circle cx="150" cy="64" r="42" fill="#20201c" stroke="#4a4a42" stroke-width=".8"/>
-          <ellipse cx="150" cy="338" rx="88" ry="14" fill="#000" opacity=".18"/>
-        </svg>
-        <div class="visual-brand">DERMO</div>
-      </div>
-
-      <button class="hero-scroll" type="button" onclick="document.getElementById('nova-rotina').scrollIntoView({behavior:'smooth'})"><span class="scroll-line"></span><span>Ver</span></button>
-    </section>
-
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>limpeza</span><span>reparação</span><span>renovação</span><span>ácido salicílico 2%</span><span>ácido tranexâmico 3%</span><span>rotina personalizada</span>
-        <span>limpeza</span><span>reparação</span><span>renovação</span><span>ácido salicílico 2%</span><span>ácido tranexâmico 3%</span><span>rotina personalizada</span>
-      </div>
-    </div>
-
-    <section id="nova-rotina">
-      <div class="section-head">
-        <h2 class="fade">Nova <em>Rotina</em></h2>
-        <p class="fade">Uma linha enxuta: limpar, reparar e renovar. O luxo aqui não é excesso; é precisão.</p>
-      </div>
-      <div class="editorial-grid">
-        <div class="editorial-panel">
-          <p class="editorial-caption">01 | Limpeza profunda para peles oleosas e acneicas</p>
-          <svg class="bottle-svg" viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Seboclin">
-            <rect x="58" y="28" width="64" height="18" rx="3" fill="#424238"/>
-            <rect x="48" y="44" width="84" height="230" rx="42" fill="#24241f" stroke="#4a4a42" stroke-width="1"/>
-            <rect x="60" y="72" width="60" height="156" rx="30" fill="#1a1a17"/>
-            <ellipse cx="90" cy="150" rx="24" ry="34" fill="#b8ccc0" opacity=".15"/>
-            <text x="90" y="257" text-anchor="middle" font-size="9" letter-spacing="2.4" fill="#77776d" font-family="Georgia,serif">SEBOCLIN</text>
-          </svg>
-          <div class="editorial-word">DERMO</div>
-        </div>
-        <div class="editorial-panel">
-          <p class="editorial-caption">02 | Uniformização do tom e suporte à barreira cutânea</p>
-          <svg class="bottle-svg" viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Anexregen">
-            <rect x="60" y="24" width="60" height="18" rx="3" fill="#bbb5aa"/>
-            <rect x="46" y="42" width="88" height="236" rx="9" fill="#e6e1d8" stroke="#c7c2b8" stroke-width="1"/>
-            <rect x="60" y="70" width="60" height="158" rx="5" fill="#d5d0c6"/>
-            <ellipse cx="90" cy="151" rx="25" ry="34" fill="#3d5a4a" opacity=".10"/>
-            <text x="90" y="260" text-anchor="middle" font-size="8" letter-spacing="2" fill="#7e7a72" font-family="Georgia,serif">ANEXREGEN</text>
-          </svg>
-          <div class="editorial-word">VITA</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="produtos">
-      <div class="section-head">
-        <h2 class="fade">Coleção<br><em>Dermatológica</em></h2>
-        <p class="fade">Três produtos, três funções. Sem promessa mágica. Uma rotina clara para apresentação, venda e assinatura no estande.</p>
-      </div>
-
-      <div class="products">
-        <article class="product-card fade" data-product="Seboclin">
-          <div class="product-media">
-            <span class="product-num">01 | Limpeza</span>
-            <svg class="bottle-svg" viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="58" y="28" width="64" height="18" rx="3" fill="#bbb5aa"/>
-              <rect x="48" y="44" width="84" height="230" rx="42" fill="#dedad2" stroke="#c7c2b8" stroke-width="1"/>
-              <rect x="60" y="72" width="60" height="156" rx="30" fill="#d1ccc2"/>
-              <ellipse cx="90" cy="150" rx="24" ry="34" fill="#3d5a4a" opacity=".11"/>
-              <text x="90" y="257" text-anchor="middle" font-size="9" letter-spacing="2.4" fill="#7e7a72" font-family="Georgia,serif">SEBOCLIN</text>
-            </svg>
-            <div class="product-back">01</div>
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Pele oleosa / acneica</div>
-            <h3 class="product-name">Seboclin</h3>
-            <p class="product-active">Ácido Salicílico 2%</p>
-            <p class="product-desc">Gel de limpeza com BHA lipofílico. Ajuda a remover sebo, limpar poros e reduzir acúmulo de células mortas.</p>
-            <div class="product-actions">
-              <button class="btn dark small" type="button" onclick="adicionarProduto('Seboclin')">Adicionar ao plano</button>
-              <button class="btn small" type="button" onclick="produtoNoDiagnostico('Seboclin')">Usar no diagnóstico</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card fade" data-product="Anexregen">
-          <div class="product-media">
-            <span class="product-num">02 | Reparação</span>
-            <svg class="bottle-svg" viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="60" y="24" width="60" height="18" rx="3" fill="#bbb5aa"/>
-              <rect x="46" y="42" width="88" height="236" rx="9" fill="#e8e3da" stroke="#c7c2b8" stroke-width="1"/>
-              <rect x="60" y="70" width="60" height="158" rx="5" fill="#d7d1c7"/>
-              <ellipse cx="90" cy="151" rx="25" ry="34" fill="#3d5a4a" opacity=".10"/>
-              <text x="90" y="260" text-anchor="middle" font-size="8" letter-spacing="2" fill="#7e7a72" font-family="Georgia,serif">ANEXREGEN</text>
-            </svg>
-            <div class="product-back">02</div>
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Manchas / barreira cutânea</div>
-            <h3 class="product-name">Anexregen</h3>
-            <p class="product-active">Ácido Tranexâmico 3%</p>
-            <p class="product-desc">Sérum reparador para uniformização do tom, manchas pós-acne e suporte à recuperação da barreira da pele.</p>
-            <div class="product-actions">
-              <button class="btn dark small" type="button" onclick="adicionarProduto('Anexregen')">Adicionar ao plano</button>
-              <button class="btn small" type="button" onclick="produtoNoDiagnostico('Anexregen')">Usar no diagnóstico</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card fade" data-product="Keraclin">
-          <div class="product-media">
-            <span class="product-num">03 | Renovação</span>
-            <svg class="bottle-svg" viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="62" y="30" width="56" height="16" rx="3" fill="#bdb8ad"/>
-              <rect x="50" y="46" width="80" height="226" rx="40" fill="#ece8df" stroke="#c7c2b8" stroke-width="1"/>
-              <rect x="64" y="76" width="52" height="148" rx="26" fill="#dcd6cc"/>
-              <circle cx="90" cy="151" r="29" fill="#3d5a4a" opacity=".08"/>
-              <text x="90" y="257" text-anchor="middle" font-size="9" letter-spacing="2.4" fill="#7e7a72" font-family="Georgia,serif">KERACLIN</text>
-            </svg>
-            <div class="product-back">03</div>
-          </div>
-          <div class="product-info">
-            <div class="product-cat">Textura / renovação</div>
-            <h3 class="product-name">Keraclin</h3>
-            <p class="product-active">Esfoliante dermatológico</p>
-            <p class="product-desc">Renovação da textura da pele. Ajuda a remover células mortas e melhorar aspecto áspero ou irregular.</p>
-            <div class="product-actions">
-              <button class="btn dark small" type="button" onclick="adicionarProduto('Keraclin')">Adicionar ao plano</button>
-              <button class="btn small" type="button" onclick="produtoNoDiagnostico('Keraclin')">Usar no diagnóstico</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="diagnostico" class="diagnosis">
-      <div class="section-head">
-        <h2 class="fade">Diagnóstico<br><em>BioVita</em></h2>
-        <p class="fade">A ferramenta de venda do estande: três respostas, uma rotina sugerida e um caminho direto para assinatura.</p>
-      </div>
-      <div class="diagnosis-body">
-        <div class="diag-step fade">
-          <span class="diag-num">01 |</span>
-          <p class="diag-q">Como sua pele costuma ficar ao longo do dia?</p>
-          <div class="diag-options" data-question="tipo">
-            <button class="choice" type="button">Oleosa</button>
-            <button class="choice" type="button">Mista</button>
-            <button class="choice" type="button">Seca</button>
-            <button class="choice" type="button">Sensível</button>
-          </div>
-        </div>
-        <div class="diag-step fade">
-          <span class="diag-num">02 |</span>
-          <p class="diag-q">Qual é o principal incômodo?</p>
-          <div class="diag-options" data-question="incomodo">
-            <button class="choice" type="button">Acne</button>
-            <button class="choice" type="button">Manchas</button>
-            <button class="choice" type="button">Oleosidade</button>
-            <button class="choice" type="button">Textura</button>
-          </div>
-        </div>
-        <div class="diag-step fade">
-          <span class="diag-num">03 |</span>
-          <p class="diag-q">Você já usa skincare com regularidade?</p>
-          <div class="diag-options" data-question="rotina">
-            <button class="choice" type="button">Sim</button>
-            <button class="choice" type="button">Não</button>
-            <button class="choice" type="button">Às vezes</button>
-          </div>
-        </div>
-        <div class="diag-control fade">
-          <button class="btn dark" type="button" onclick="gerarDiagnostico()">Ver minha rotina</button>
-        </div>
-        <div class="diag-result" id="diagResult">
-          <div class="result-grid">
-            <div>
-              <div class="kicker">Sua rotina recomendada</div>
-              <h3 class="result-title" id="resultTitle">Seboclin + Anexregen</h3>
-              <p class="result-copy" id="resultCopy">Controle de oleosidade, limpeza dos poros e uniformização do tom.</p>
-            </div>
-            <div class="result-stack">
-              <button class="btn dark full" type="button" onclick="adicionarRotinaResultado()">Adicionar rotina</button>
-              <a class="btn full" href="#assinaturas">Ver assinaturas</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="assinaturas">
-      <div class="section-head">
-        <h2 class="fade">Assinaturas<br><em>BioVita</em></h2>
-        <p class="fade">Escolha um plano para preencher automaticamente a ficha. Isso deixa a negociação mais rápida no estande.</p>
-      </div>
-      <div class="plans-grid">
-        <article class="plan-card fade" onclick="selecionarPlano('Essencial')">
-          <span class="plan-num">01</span>
-          <h3 class="plan-name">Essencial</h3>
-          <p class="plan-desc">Para quem quer começar sem complicar.</p>
-          <ul class="plan-items"><li class="plan-item">1 produto principal</li><li class="plan-item">Orientação de uso</li><li class="plan-item">Rotina básica</li></ul>
-          <button class="btn small" type="button">Escolher plano</button>
-        </article>
-        <article class="plan-card fade" onclick="selecionarPlano('Controle')">
-          <span class="plan-num">02</span>
-          <h3 class="plan-name">Controle</h3>
-          <p class="plan-desc">Para pele oleosa e acneica.</p>
-          <ul class="plan-items"><li class="plan-item">Seboclin</li><li class="plan-item">Controle de oleosidade</li><li class="plan-item">Limpeza dos poros</li></ul>
-          <button class="btn small" type="button">Escolher plano</button>
-        </article>
-        <article class="plan-card fade" onclick="selecionarPlano('Repair')">
-          <span class="plan-num">03</span>
-          <h3 class="plan-name">Repair</h3>
-          <p class="plan-desc">Para manchas, sensibilidade e reparação.</p>
-          <ul class="plan-items"><li class="plan-item">Anexregen</li><li class="plan-item">Suporte à barreira</li><li class="plan-item">Uniformização do tom</li></ul>
-          <button class="btn small" type="button">Escolher plano</button>
-        </article>
-        <article class="plan-card featured fade" onclick="selecionarPlano('Complete')">
-          <span class="plan-label">Mais forte</span>
-          <span class="plan-num">04</span>
-          <h3 class="plan-name">Complete</h3>
-          <p class="plan-desc">Rotina completa: limpeza, reparação e renovação.</p>
-          <ul class="plan-items"><li class="plan-item">Seboclin</li><li class="plan-item">Anexregen</li><li class="plan-item">Keraclin</li><li class="plan-item">Diagnóstico BioVita</li></ul>
-          <button class="btn small" type="button">Escolher plano</button>
-        </article>
-      </div>
-    </section>
-
-    <section id="sobre" class="about">
-      <div>
-        <h2 class="about-title fade">Precisão<br><em>dermatológica.</em><br>Sem ruído.</h2>
-        <p class="about-copy fade">A BioVita Dermo é uma marca protótipo de dermocosméticos criada para unir ciência, estética e experiência de compra. A proposta é simples: cada produto precisa ter uma função clara na rotina.</p>
-      </div>
-      <div class="values fade">
-        <div class="value"><span class="value-num">01</span><div><h3 class="value-name">Ativos reconhecidos</h3><p class="value-copy">Ácido salicílico para oleosidade, ácido tranexâmico para uniformização e esfoliação para textura.</p></div></div>
-        <div class="value"><span class="value-num">02</span><div><h3 class="value-name">Venda consultiva</h3><p class="value-copy">O cliente não compra “um produto aleatório”; ele recebe uma rotina indicada pelo diagnóstico.</p></div></div>
-        <div class="value"><span class="value-num">03</span><div><h3 class="value-name">Aparência premium</h3><p class="value-copy">Fundo limpo, tipografia editorial e linguagem curta. Visual de marca, não de trabalho improvisado.</p></div></div>
-      </div>
-    </section>
-
-    <section id="contato" class="contact">
-      <div class="contact-grid">
+    <div class="overlay" id="menuOverlay" aria-hidden="true">
+      <button class="close" onclick="closeMenu()" aria-label="Fechar menu">×</button>
+      <nav class="menu-main">
+        <div class="menu-logo">BioVita<small>DERMO</small></div>
+        <a class="menu-item" href="#inicio" onclick="closeMenu()">• Início</a>
+        <a class="menu-item" href="#produtos" onclick="closeMenu()">Produtos</a>
+        <a class="menu-item" href="#diagnostico" onclick="closeMenu()">Diagnóstico</a>
+        <a class="menu-item" href="#planos" onclick="closeMenu()">Kits e planos</a>
+        <a class="menu-item" href="#institucional" onclick="closeMenu()">Institucional</a>
+        <a class="menu-item" href="#contato" onclick="closeMenu()">Ficha de interesse</a>
+      </nav>
+      <div class="menu-sub">
         <div>
-          <div class="kicker fade">Atendimento no estande</div>
-          <h2 class="contact-title fade">Ficha de<br><em>Interesse</em></h2>
-          <p class="contact-copy fade">Preencha os dados, gere a ficha e apresente ao consultor BioVita. Isso funciona como comprovante de interesse para fechamento.</p>
+          <div class="menu-title">Coleção BioVita Dermo</div>
+          <a class="menu-product" href="#produtos" onclick="closeMenu()"><span>01 |</span><b>Seboclin</b><small>Limpeza</small></a>
+          <a class="menu-product" href="#produtos" onclick="closeMenu()"><span>02 |</span><b>Keraclin</b><small>Renovação</small></a>
+          <a class="menu-product" href="#produtos" onclick="closeMenu()"><span>03 |</span><b>Acnexyl</b><small>Antiacne</small></a>
+          <a class="menu-product" href="#produtos" onclick="closeMenu()"><span>04 |</span><b>Anexregen</b><small>Reparação</small></a>
         </div>
-        <form class="form fade" id="interestForm" onsubmit="event.preventDefault(); gerarFicha();">
-          <div class="form-row">
-            <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" placeholder="Nome completo" required></div>
-            <div class="field"><label for="contatoInput">Contato</label><input id="contatoInput" name="contato" type="text" placeholder="WhatsApp ou e-mail" required></div>
-          </div>
-          <div class="form-row">
-            <div class="field"><label for="peleInput">Tipo de pele</label><select id="peleInput" name="pele"><option value="">Selecionar —</option><option>Oleosa</option><option>Mista</option><option>Seca</option><option>Sensível</option></select></div>
-            <div class="field"><label for="planoInput">Plano desejado</label><select id="planoInput" name="plano"><option value="">Selecionar —</option><option>Essencial</option><option>Controle</option><option>Repair</option><option>Complete</option></select></div>
-          </div>
-          <div class="field"><label for="produtosInput">Produtos de interesse</label><input id="produtosInput" name="produtos" type="text" placeholder="Ex.: Seboclin, Anexregen"></div>
-          <div class="field"><label for="obsInput">Observações</label><textarea id="obsInput" name="obs" placeholder="Acne, manchas, oleosidade, textura, sensibilidade..."></textarea></div>
-          <p class="legal-note">Nota: este site é um protótipo escolar. Os produtos não substituem avaliação médica, dermatológica ou prescrição profissional.</p>
-          <button class="btn dark full" type="submit">Gerar ficha BioVita</button>
-        </form>
+        <div class="menu-panel"><img src="assets/hero-stand.jpg" alt="Expositor BioVita Dermo"></div>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-brand">BIOVITA<small>DERMO</small></div>
-    <p>© 2026 BioVita Dermo — Indústria Farmacêutica e Dermocosmética | Protótipo escolar.</p>
-  </footer>
-
-  <div class="ticket-modal" id="ticketModal" role="dialog" aria-modal="true" aria-labelledby="ticketTitle">
-    <div class="ticket" id="ticket">
-      <button class="ticket-close" type="button" onclick="fecharFicha()" aria-label="Fechar ficha">×</button>
-      <div class="ticket-brand">BIOVITA<small>DERMO</small></div>
-      <h2 class="ticket-title" id="ticketTitle">Ficha de Interesse</h2>
-      <div class="ticket-lines" id="ticketLines"></div>
-      <p class="ticket-disclaimer">Apresente esta ficha ao consultor BioVita no estande. Este documento registra interesse comercial no protótipo escolar e não substitui avaliação médica.</p>
-      <div class="ticket-actions"><button class="btn dark" type="button" onclick="window.print()">Imprimir / salvar PDF</button><button class="btn" type="button" onclick="fecharFicha()">Fechar</button></div>
     </div>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <div class="eyebrow">Dermocosméticos · Linha Dermo</div>
+          <div>
+            <h1>Ciência.<br>Cuidado.<em>pele tratada com precisão</em></h1>
+            <p class="hero-text">Skincare funcional com estética premium: limpeza, renovação, tratamento da acne e reparação da pele em uma rotina simples, clara e vendável.</p>
+            <div class="hero-actions">
+              <a class="btn dark" href="#produtos">Conhecer produtos</a>
+              <a class="btn" href="#diagnostico">Montar rotina</a>
+            </div>
+          </div>
+          <div class="eyebrow">Seboclin · Keraclin · Acnexyl · Anexregen</div>
+        </div>
+        <div class="hero-visual">
+          <img src="assets/hero-stand.jpg" alt="Expositor BioVita com produtos dermatológicos">
+          <div class="hero-info"><b>Da ciência ao cuidado</b><p>Uma linha pensada para apresentação profissional, diagnóstico rápido e fechamento de plano no estande.</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="produtos">
+        <div class="search-bar" id="searchBar"><input id="searchInput" placeholder="Pesquisar produto, ativo ou função..." oninput="filterProducts()"><button onclick="clearSearch()">Limpar</button></div>
+        <div class="section-head fade">
+          <h2>Coleção Dermo</h2>
+          <p>Produtos individuais com ativo, função e preço claros. O site agora usa as fotos reais que você enviou, não desenhos genéricos.</p>
+        </div>
+        <div class="product-grid" id="productGrid">
+          <article class="product-card fade" data-search="seboclin gel limpeza ácido salicílico oleosidade acne pele acneica">
+            <div class="product-photo"><span class="tag">01 | Limpeza</span><img src="assets/seboclin.jpg" alt="Seboclin Gel de Limpeza Dermatológico"></div>
+            <div class="product-body">
+              <div class="product-name">Seboclin</div><div class="active">Ácido Salicílico 2% · 120 ml</div>
+              <p class="desc">Gel de limpeza dermatológico para pele acneica. Ajuda no controle da oleosidade e na limpeza dos poros.</p>
+              <div class="price">R$ 69,90</div>
+              <div class="product-actions"><button class="mini-btn dark" onclick="addItem('Seboclin', 69.90, 'Gel de limpeza · Ácido Salicílico 2%')">Adicionar ao plano</button><button class="mini-btn" onclick="selectProductRoutine('Seboclin')">Usar no diagnóstico</button></div>
+            </div>
+          </article>
+
+          <article class="product-card fade" data-search="keraclin esfoliante renovação ácido salicílico textura poros">
+            <div class="product-photo"><span class="tag">02 | Renovação</span><img src="assets/keraclin.jpg" alt="Keraclin Esfoliante Dermatológico"></div>
+            <div class="product-body">
+              <div class="product-name">Keraclin</div><div class="active">Ácido Salicílico 2% · 100 g</div>
+              <p class="desc">Esfoliante dermatológico para renovação da textura e desobstrução dos poros, com acabamento limpo e uniforme.</p>
+              <div class="price">R$ 64,90</div>
+              <div class="product-actions"><button class="mini-btn dark" onclick="addItem('Keraclin', 64.90, 'Esfoliante · Renovação de textura')">Adicionar ao plano</button><button class="mini-btn" onclick="selectProductRoutine('Keraclin')">Usar no diagnóstico</button></div>
+            </div>
+          </article>
+
+          <article class="product-card fade" data-search="acnexyl creme dermatológico antiacne peróxido de benzoíla acne">
+            <div class="product-photo"><span class="tag">03 | Antiacne</span><img src="assets/acnexyl.jpg" alt="Acnexyl Creme Dermatológico Antiacne"></div>
+            <div class="product-body">
+              <div class="product-name">Acnexyl</div><div class="active">Peróxido de Benzoíla 5% · 30 g</div>
+              <p class="desc">Creme dermatológico antiacne voltado para espinhas e controle de lesões acneicas. Uso gradual e responsável.</p>
+              <div class="price">R$ 79,90</div>
+              <div class="product-actions"><button class="mini-btn dark" onclick="addItem('Acnexyl', 79.90, 'Creme antiacne · Peróxido de Benzoíla 5%')">Adicionar ao plano</button><button class="mini-btn" onclick="selectProductRoutine('Acnexyl')">Usar no diagnóstico</button></div>
+            </div>
+          </article>
+
+          <article class="product-card fade" data-search="anexregen sérum reparador ácido tranexâmico manchas pós acne uniformização reparação">
+            <div class="product-photo"><span class="tag">04 | Reparação</span><img src="assets/anexregen.jpg" alt="Anexregen Sérum Dermatológico Reparador"></div>
+            <div class="product-body">
+              <div class="product-name">Anexregen</div><div class="active">Ácido Tranexâmico 3% · 30 ml</div>
+              <p class="desc">Sérum reparador para uniformização do tom, manchas pós-acne e suporte à barreira cutânea.</p>
+              <div class="price">R$ 89,90</div>
+              <div class="product-actions"><button class="mini-btn dark" onclick="addItem('Anexregen', 89.90, 'Sérum reparador · Ácido Tranexâmico 3%')">Adicionar ao plano</button><button class="mini-btn" onclick="selectProductRoutine('Anexregen')">Usar no diagnóstico</button></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="diagnostico">
+        <div class="section-head fade">
+          <h2>Diagnóstico BioVita</h2>
+          <p>Responda rápido e gere uma recomendação de rotina. Isso serve como ferramenta de venda no estande, não como consulta médica.</p>
+        </div>
+        <div class="diag-wrap">
+          <div class="diag-panel fade">
+            <div class="question"><div class="q-title"><span>01 |</span><b>Como sua pele costuma ficar?</b></div><div class="options" data-q="tipo"><button class="opt" onclick="choose(this,'tipo')">Oleosa</button><button class="opt" onclick="choose(this,'tipo')">Mista</button><button class="opt" onclick="choose(this,'tipo')">Seca</button><button class="opt" onclick="choose(this,'tipo')">Sensível</button></div></div>
+            <div class="question"><div class="q-title"><span>02 |</span><b>Qual é o principal incômodo?</b></div><div class="options" data-q="incomodo"><button class="opt" onclick="choose(this,'incomodo')">Acne</button><button class="opt" onclick="choose(this,'incomodo')">Manchas</button><button class="opt" onclick="choose(this,'incomodo')">Oleosidade</button><button class="opt" onclick="choose(this,'incomodo')">Textura</button></div></div>
+            <div class="question"><div class="q-title"><span>03 |</span><b>Você já usa skincare?</b></div><div class="options" data-q="rotina"><button class="opt" onclick="choose(this,'rotina')">Sim</button><button class="opt" onclick="choose(this,'rotina')">Não</button><button class="opt" onclick="choose(this,'rotina')">Às vezes</button></div></div>
+            <button class="btn dark" onclick="generateRoutine()">Ver rotina recomendada</button>
+          </div>
+          <div class="result-card fade" id="routineResult">
+            <div class="label">Resultado</div><h3>Rotina ainda não gerada</h3><p>Selecione as respostas e clique em “Ver rotina recomendada”.</p><div class="routine-list" id="routineList"></div><button class="btn dark" onclick="addRoutineToCart()">Adicionar rotina ao plano</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="planos">
+        <div class="section-head fade"><h2>Kits e preços</h2><p>Valores organizados conforme a tabela visual enviada. Os botões agora adicionam o kit ao plano.</p></div>
+        <div class="plans">
+          <article class="plan fade"><div class="plan-num">01</div><h3>Controle da Oleosidade</h3><p>Seboclin + Keraclin</p><ul><li>Limpeza dos poros</li><li>Renovação de textura</li><li>Indicado para pele oleosa</li></ul><div class="price">R$ 119,90</div><button class="mini-btn dark" onclick="addKit('Kit Controle da Oleosidade', 119.90, ['Seboclin','Keraclin'])">Escolher kit</button></article>
+          <article class="plan fade"><div class="plan-num">02</div><h3>Kit Antiacne</h3><p>Seboclin + Acnexyl</p><ul><li>Limpeza dermatológica</li><li>Cuidado antiacne</li><li>Rotina objetiva</li></ul><div class="price">R$ 139,90</div><button class="mini-btn dark" onclick="addKit('Kit Antiacne', 139.90, ['Seboclin','Acnexyl'])">Escolher kit</button></article>
+          <article class="plan fade"><div class="plan-num">03</div><h3>Pele Uniforme</h3><p>Seboclin + Anexregen</p><ul><li>Limpeza + reparação</li><li>Manchas pós-acne</li><li>Uniformização do tom</li></ul><div class="price">R$ 149,90</div><button class="mini-btn dark" onclick="addKit('Kit Pele Uniforme', 149.90, ['Seboclin','Anexregen'])">Escolher kit</button></article>
+          <article class="plan featured fade"><span class="badge">Completo</span><div class="plan-num">04</div><h3>Rotina Completa</h3><p>Seboclin + Keraclin + Acnexyl + Anexregen</p><ul><li>Limpeza</li><li>Renovação</li><li>Antiacne</li><li>Reparação</li></ul><div class="price">R$ 249,90</div><button class="mini-btn" onclick="addKit('Kit Rotina Completa BioVita', 249.90, ['Seboclin','Keraclin','Acnexyl','Anexregen'])">Escolher kit</button></article>
+        </div>
+      </section>
+
+      <section class="section" id="institucional">
+        <div class="section-head fade"><h2>Institucional</h2><p>Materiais enviados incorporados ao site como apoio de apresentação: conceito, sustentabilidade e tabela de preços.</p></div>
+        <div class="poster-grid">
+          <a class="poster fade" href="assets/poster-sobre.jpg" target="_blank"><img src="assets/poster-sobre.jpg" alt="Sobre a BioVita Dermo"></a>
+          <a class="poster fade" href="assets/poster-sustentabilidade.jpg" target="_blank"><img src="assets/poster-sustentabilidade.jpg" alt="Sustentabilidade BioVita Dermo"></a>
+          <a class="poster fade" href="assets/tabela-precos.jpg" target="_blank"><img src="assets/tabela-precos.jpg" alt="Tabela de preços BioVita Dermo"></a>
+        </div>
+      </section>
+
+      <section class="section dark">
+        <div class="section-head fade"><h2>Precisão sem ruído.</h2><p>O objetivo do site não é parecer “bonitinho”. É parecer uma marca real, explicar rapidamente os produtos e facilitar a negociação.</p></div>
+      </section>
+
+      <section class="section" id="contato">
+        <div class="lead-grid">
+          <div class="fade"><div class="section-head" style="display:block;border:0;margin:0;padding:0"><h2>Ficha de interesse</h2><p style="margin-top:20px">Preencha os dados. O site gera uma ficha para mostrar ao consultor BioVita no estande. Se o plano tiver itens, eles aparecem automaticamente.</p></div></div>
+          <div class="form fade">
+            <div class="field"><label>Nome</label><input id="leadName" placeholder="Nome do cliente"></div>
+            <div class="field"><label>Contato</label><input id="leadContact" placeholder="WhatsApp ou e-mail"></div>
+            <div class="field"><label>Tipo de pele</label><select id="leadSkin"><option value="">Selecionar</option><option>Oleosa</option><option>Mista</option><option>Seca</option><option>Sensível</option></select></div>
+            <div class="field"><label>Observações</label><textarea id="leadNotes" placeholder="Acne, manchas, oleosidade, textura, sensibilidade..."></textarea></div>
+            <button class="btn dark" style="width:100%" onclick="generateTicket()">Gerar ficha</button>
+            <div class="ticket" id="ticket"><h3>Ficha BioVita</h3><div id="ticketRows"></div><button class="btn" style="margin-top:18px" onclick="window.print()">Imprimir / salvar PDF</button></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer><div class="foot-brand">BioVita<small>DERMO</small></div><p>Projeto escolar de dermocosméticos. As informações são demonstrativas e não substituem avaliação dermatológica profissional.</p></footer>
   </div>
 
-  <div class="toast" id="toast"></div>
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeCart()"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head"><h3>Meu plano</h3><button class="drawer-close" onclick="closeCart()">×</button></div>
+    <div class="drawer-body" id="cartItems"><p class="cart-empty">Nenhum produto adicionado ainda.</p></div>
+    <div class="drawer-foot"><div class="total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div><button class="btn dark" onclick="scrollToLead()">Gerar ficha de interesse</button><button class="btn" onclick="clearCart()">Limpar plano</button></div>
+  </aside>
 
   <script>
-    const state = {
-      plan: [],
-      selectedPlan: '',
-      diagnosisProducts: [],
-      diagnosisTitle: '',
-      products: {
-        Seboclin: { tag: 'Limpeza', desc: 'Ácido Salicílico 2%' },
-        Anexregen: { tag: 'Reparação', desc: 'Ácido Tranexâmico 3%' },
-        Keraclin: { tag: 'Renovação', desc: 'Esfoliante dermatológico' }
-      }
+    const money = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+    const products = {
+      'Seboclin': {price:69.90, note:'Gel de limpeza · Ácido Salicílico 2%'},
+      'Keraclin': {price:64.90, note:'Esfoliante · Renovação de textura'},
+      'Acnexyl': {price:79.90, note:'Creme antiacne · Peróxido de Benzoíla 5%'},
+      'Anexregen': {price:89.90, note:'Sérum reparador · Ácido Tranexâmico 3%'}
     };
+    let cart = [];
+    let selected = {};
+    let lastRoutine = [];
 
-    const $ = (s, root = document) => root.querySelector(s);
-    const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+    function openMenu(){document.getElementById('menuOverlay').classList.add('open');document.body.style.overflow='hidden'}
+    function closeMenu(){document.getElementById('menuOverlay').classList.remove('open');document.body.style.overflow=''}
+    function openCart(){document.getElementById('drawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('open')}
+    function closeCart(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerBackdrop').classList.remove('open')}
+    function toggleSearch(){document.getElementById('searchBar').classList.toggle('visible');document.getElementById('searchInput').focus()}
+    function clearSearch(){document.getElementById('searchInput').value='';filterProducts()}
+    function filterProducts(){const q=document.getElementById('searchInput').value.toLowerCase().trim();document.querySelectorAll('.product-card').forEach(c=>{c.style.display=c.dataset.search.includes(q)?'flex':'none'})}
 
-    function lockBody(v) { document.body.classList.toggle('locked', v); }
+    function addItem(name, price, note){cart.push({type:'product',name,price,note});renderCart();toast(`${name} adicionado ao plano`)}
+    function addKit(name, price, items){cart.push({type:'kit',name,price,note:items.join(' + ')});renderCart();toast(`${name} adicionado ao plano`);openCart()}
+    function renderCart(){
+      const box=document.getElementById('cartItems');
+      document.getElementById('cartCount').textContent=cart.length;
+      const total=cart.reduce((s,i)=>s+i.price,0);document.getElementById('cartTotal').textContent=money(total);
+      if(!cart.length){box.innerHTML='<p class="cart-empty">Nenhum produto adicionado ainda.</p>';return}
+      box.innerHTML=cart.map((i,idx)=>`<div class="cart-item"><div><b>${i.name}</b><span>${i.note}</span></div><div style="text-align:right"><strong>${money(i.price)}</strong><br><button class="cart-remove" onclick="removeCart(${idx})">remover</button></div></div>`).join('');
+    }
+    function removeCart(i){cart.splice(i,1);renderCart()}function clearCart(){cart=[];renderCart()}
+    function toast(text){const el=document.createElement('div');el.textContent=text;el.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:999;background:#11110f;color:white;padding:13px 24px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 12px 40px rgba(0,0,0,.18)';document.body.appendChild(el);setTimeout(()=>el.remove(),2200)}
 
-    function closeAll() {
-      $('#menuOverlay').classList.remove('open');
-      $('#searchOverlay').classList.remove('open');
-      $('#planDrawer').classList.remove('open');
-      $('#scrim').classList.remove('open');
-      lockBody(false);
+    function choose(btn,q){document.querySelectorAll(`[data-q="${q}"] .opt`).forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selected[q]=btn.textContent.trim()}
+    function generateRoutine(){
+      if(!selected.tipo){alert('Selecione o tipo de pele.');return}
+      const incomodo = selected.incomodo || 'Manchas';
+      const tipo = selected.tipo;
+      let names=[];let title='';let desc='';
+      if(tipo==='Sensível'){names=['Anexregen'];title='Rotina Reparadora';desc='Para pele sensível, a recomendação deve ser mais conservadora: foco em reparação e uso progressivo.'}
+      else if(incomodo==='Acne'){names=['Seboclin','Acnexyl'];title='Rotina Antiacne';desc='Combina limpeza dermatológica com cuidado antiacne. Uso responsável e atenção à irritação cutânea.'}
+      else if(incomodo==='Manchas'){names=['Seboclin','Anexregen'];title='Rotina Pele Uniforme';desc='Limpeza dos poros e suporte à uniformização do tom, especialmente em manchas pós-acne.'}
+      else if(incomodo==='Oleosidade'){names=['Seboclin','Keraclin'];title='Rotina Controle da Oleosidade';desc='Foco em controle de sebo, limpeza e renovação de textura.'}
+      else {names=['Keraclin','Anexregen'];title='Rotina Textura + Reparação';desc='Renovação da textura associada à reparação da barreira e uniformização visual.'}
+      lastRoutine=names;
+      const result=document.getElementById('routineResult');result.classList.add('visible');
+      result.querySelector('h3').textContent=title;result.querySelector('p').textContent=desc;
+      document.getElementById('routineList').innerHTML=names.map(n=>`<div><b>${n}</b> — ${products[n].note}</div>`).join('');
+      result.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+    function addRoutineToCart(){if(!lastRoutine.length){generateRoutine(); if(!lastRoutine.length) return;} lastRoutine.forEach(n=>addItem(n,products[n].price,products[n].note)); openCart()}
+    function selectProductRoutine(name){lastRoutine=[name];const result=document.getElementById('routineResult');result.classList.add('visible');result.querySelector('h3').textContent=`Produto selecionado: ${name}`;result.querySelector('p').textContent='Produto inserido como base da rotina. Você pode adicionar ao plano ou completar com o diagnóstico.';document.getElementById('routineList').innerHTML=`<div><b>${name}</b> — ${products[name].note}</div>`;document.getElementById('diagnostico').scrollIntoView({behavior:'smooth'});}
+    function addRoutineToCart(){if(!lastRoutine.length){alert('Gere uma rotina ou selecione um produto antes.');return} lastRoutine.forEach(n=>addItem(n,products[n].price,products[n].note)); openCart()}
+    function scrollToLead(){closeCart();document.getElementById('contato').scrollIntoView({behavior:'smooth'});setTimeout(generateTicket,350)}
+    function generateTicket(){
+      const name=document.getElementById('leadName').value||'Cliente não informado';
+      const contact=document.getElementById('leadContact').value||'Contato não informado';
+      const skin=document.getElementById('leadSkin').value||selected.tipo||'Tipo de pele não informado';
+      const notes=document.getElementById('leadNotes').value||selected.incomodo||'Sem observações';
+      const items=cart.length?cart.map(i=>`${i.name} (${money(i.price)})`).join(', '):(lastRoutine.length?lastRoutine.join(', '):'Nenhum produto selecionado');
+      const total=cart.reduce((s,i)=>s+i.price,0);
+      const rows=[['Nome',name],['Contato',contact],['Tipo de pele',skin],['Observações',notes],['Plano/produtos',items],['Total estimado',cart.length?money(total):'A definir no atendimento']];
+      document.getElementById('ticketRows').innerHTML=rows.map(r=>`<div class="ticket-row"><b>${r[0]}</b><span>${r[1]}</span></div>`).join('')+'<p style="margin-top:14px;color:#666;line-height:1.7">Apresente esta ficha ao consultor BioVita no estande. Projeto demonstrativo; não substitui avaliação dermatológica.</p>';
+      document.getElementById('ticket').classList.add('visible');
     }
 
-    function openPanel(panel) {
-      closeAll();
-      panel.classList.add('open');
-      $('#scrim').classList.add('open');
-      lockBody(true);
-      if (panel.id === 'searchOverlay') setTimeout(() => $('#searchInput').focus(), 160);
-    }
-
-    $('[data-open-menu]').addEventListener('click', () => openPanel($('#menuOverlay')));
-    $('[data-open-search]').addEventListener('click', () => openPanel($('#searchOverlay')));
-    $('[data-open-plan]').addEventListener('click', () => { renderPlan(); openPanel($('#planDrawer')); });
-    $$('[data-close-all]').forEach(el => el.addEventListener('click', closeAll));
-    $('#scrim').addEventListener('click', closeAll);
-    window.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAll(); fecharFicha(); } });
-
-    function toast(text) {
-      const t = $('#toast');
-      t.textContent = text;
-      t.classList.add('show');
-      clearTimeout(t._timer);
-      t._timer = setTimeout(() => t.classList.remove('show'), 2200);
-    }
-
-    function updateCount() { $('[data-plan-count]').textContent = state.plan.length; }
-
-    function adicionarProduto(produto) {
-      if (!state.plan.includes(produto)) state.plan.push(produto);
-      updateCount();
-      syncFormProducts();
-      toast(`${produto} adicionado ao plano`);
-    }
-
-    function removerProduto(produto) {
-      state.plan = state.plan.filter(p => p !== produto);
-      updateCount();
-      syncFormProducts();
-      renderPlan();
-    }
-
-    function limparPlano() {
-      state.plan = [];
-      state.selectedPlan = '';
-      updateCount();
-      syncFormProducts();
-      $('#planoInput').value = '';
-      renderPlan();
-      toast('Plano limpo');
-    }
-
-    function syncFormProducts() { $('#produtosInput').value = state.plan.join(', '); }
-
-    function renderPlan() {
-      const box = $('#drawerList');
-      if (!state.plan.length) {
-        box.innerHTML = '<p class="drawer-empty">Nenhum produto adicionado ainda. Use o diagnóstico ou escolha produtos na coleção.</p>';
-        return;
-      }
-      box.innerHTML = state.plan.map(p => `
-        <div class="drawer-item">
-          <div><strong>${p}</strong><span>${state.products[p].tag} — ${state.products[p].desc}</span></div>
-          <button class="remove-item" type="button" onclick="removerProduto('${p}')">×</button>
-        </div>
-      `).join('');
-    }
-
-    function scrollToFicha() {
-      closeAll();
-      syncFormProducts();
-      $('#contato').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => $('#nome').focus(), 650);
-    }
-
-    function selecionarPlano(plano) {
-      state.selectedPlan = plano;
-      $('#planoInput').value = plano;
-      const bundles = {
-        Essencial: ['Seboclin'],
-        Controle: ['Seboclin'],
-        Repair: ['Anexregen'],
-        Complete: ['Seboclin', 'Anexregen', 'Keraclin']
-      };
-      bundles[plano].forEach(adicionarProdutoSilencioso);
-      updateCount();
-      syncFormProducts();
-      toast(`Plano ${plano} selecionado`);
-      setTimeout(() => $('#contato').scrollIntoView({ behavior: 'smooth' }), 260);
-    }
-
-    function adicionarProdutoSilencioso(produto) { if (!state.plan.includes(produto)) state.plan.push(produto); }
-
-    const rotinas = {
-      OLEOSA: {
-        ACNE: ['Seboclin', 'Keraclin', 'Limpeza profunda e renovação de textura para pele oleosa com tendência acneica.'],
-        MANCHAS: ['Seboclin', 'Anexregen', 'Controle de oleosidade com suporte à uniformização do tom e manchas pós-acne.'],
-        OLEOSIDADE: ['Seboclin', '', 'Rotina direta para limpeza dos poros e controle de sebo.'],
-        TEXTURA: ['Seboclin', 'Keraclin', 'Limpeza e renovação para textura mais uniforme.']
-      },
-      MISTA: {
-        ACNE: ['Seboclin', 'Anexregen', 'Equilíbrio entre limpeza e reparação para pele mista com acne e marcas.'],
-        MANCHAS: ['Anexregen', 'Keraclin', 'Uniformização do tom e renovação progressiva da textura.'],
-        OLEOSIDADE: ['Seboclin', '', 'Limpeza direcionada para zonas de maior oleosidade.'],
-        TEXTURA: ['Keraclin', '', 'Renovação para textura irregular em pele mista.']
-      },
-      SECA: {
-        ACNE: ['Anexregen', '', 'Suporte à barreira cutânea antes de intensificar ativos de limpeza.'],
-        MANCHAS: ['Anexregen', '', 'Sérum reparador com foco em uniformização do tom.'],
-        OLEOSIDADE: ['Anexregen', '', 'Pele seca com queixa de oleosidade exige cautela e diagnóstico conservador.'],
-        TEXTURA: ['Anexregen', 'Keraclin', 'Reparação e renovação progressiva para textura áspera.']
-      },
-      SENSÍVEL: {
-        ACNE: ['Anexregen', '', 'Para pele sensível, priorize barreira cutânea e introdução progressiva.'],
-        MANCHAS: ['Anexregen', '', 'Uniformização com proposta mais conservadora para pele sensível.'],
-        OLEOSIDADE: ['Seboclin', '', 'Limpeza deve ser adaptada com frequência menor em pele sensível.'],
-        TEXTURA: ['Anexregen', '', 'Reparação antes de esfoliação intensa.']
-      }
-    };
-
-    $$('.diag-options').forEach(group => {
-      group.addEventListener('click', e => {
-        const btn = e.target.closest('.choice');
-        if (!btn) return;
-        $$('.choice', group).forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-      });
-    });
-
-    function getChoice(question) {
-      const selected = $(`[data-question="${question}"] .choice.selected`);
-      return selected ? selected.textContent.trim().toUpperCase() : '';
-    }
-
-    function gerarDiagnostico() {
-      const tipo = getChoice('tipo');
-      const inc = getChoice('incomodo') || 'MANCHAS';
-      if (!tipo) { toast('Selecione o tipo de pele'); return; }
-      const data = (rotinas[tipo] && rotinas[tipo][inc]) || rotinas.OLEOSA.MANCHAS;
-      const produtos = data.slice(0, 2).filter(Boolean);
-      state.diagnosisProducts = produtos;
-      state.diagnosisTitle = produtos.join(' + ');
-      $('#resultTitle').textContent = state.diagnosisTitle;
-      $('#resultCopy').textContent = data[2];
-      $('#diagResult').classList.add('open');
-      $('#diagResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      $('#peleInput').value = tipo.charAt(0) + tipo.slice(1).toLowerCase();
-      $('#obsInput').value = inc.charAt(0) + inc.slice(1).toLowerCase();
-    }
-
-    function adicionarRotinaResultado() {
-      if (!state.diagnosisProducts.length) return;
-      state.diagnosisProducts.forEach(adicionarProdutoSilencioso);
-      updateCount();
-      syncFormProducts();
-      toast('Rotina adicionada ao plano');
-    }
-
-    function produtoNoDiagnostico(produto) {
-      adicionarProduto(produto);
-      $('#diagnostico').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    const searchData = [
-      ['01 |', 'Seboclin', 'Limpeza — Ácido Salicílico 2%'],
-      ['02 |', 'Anexregen', 'Reparação — Ácido Tranexâmico 3%'],
-      ['03 |', 'Keraclin', 'Renovação — Esfoliante dermatológico'],
-      ['04 |', 'Diagnóstico', 'Rotina personalizada BioVita'],
-      ['05 |', 'Assinaturas', 'Planos Essencial, Controle, Repair e Complete']
-    ];
-
-    function renderSearch(query = '') {
-      const q = query.toLowerCase();
-      const items = searchData.filter(item => item.join(' ').toLowerCase().includes(q));
-      $('#searchResults').innerHTML = items.map(item => `
-        <div class="search-result" onclick="goSearch('${item[1]}')"><span class="collection-num">${item[0]}</span><span class="search-name">${item[1]}</span><span class="search-desc">${item[2]}</span></div>
-      `).join('') || '<p class="drawer-empty">Nenhum resultado encontrado.</p>';
-    }
-
-    function goSearch(name) {
-      closeAll();
-      const map = { Seboclin: 'produtos', Anexregen: 'produtos', Keraclin: 'produtos', Diagnóstico: 'diagnostico', Assinaturas: 'assinaturas' };
-      document.getElementById(map[name] || 'produtos').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    $('#searchInput').addEventListener('input', e => renderSearch(e.target.value));
-    renderSearch();
-
-    function gerarFicha() {
-      const nome = $('#nome').value.trim();
-      const contato = $('#contatoInput').value.trim();
-      if (!nome || !contato) { toast('Preencha nome e contato'); return; }
-      const data = new Date().toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
-      const linhas = [
-        ['Nome', nome],
-        ['Contato', contato],
-        ['Tipo de pele', $('#peleInput').value || 'Não informado'],
-        ['Plano desejado', $('#planoInput').value || state.selectedPlan || 'Não selecionado'],
-        ['Produtos', $('#produtosInput').value || 'Não informado'],
-        ['Observações', $('#obsInput').value || 'Não informado'],
-        ['Gerado em', data]
-      ];
-      $('#ticketLines').innerHTML = linhas.map(([a,b]) => `<div class="ticket-line"><span>${a}</span><strong>${escapeHtml(b)}</strong></div>`).join('');
-      $('#ticketModal').classList.add('open');
-      lockBody(true);
-    }
-
-    function fecharFicha() { $('#ticketModal').classList.remove('open'); lockBody(false); }
-    function escapeHtml(str) { return String(str).replace(/[&<>'"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[s])); }
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: .12 });
-    $$('.fade').forEach(el => observer.observe(el));
-
-    // initial reveal for hero on older browsers
-    setTimeout(() => $$('.fade').slice(0, 2).forEach(el => el.classList.add('visible')), 140);
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.08});
+    document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+    renderCart();
   </script>
 </body>
 </html>
